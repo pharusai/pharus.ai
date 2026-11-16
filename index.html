@@ -446,10 +446,22 @@ a{color:#8FB0FF;text-decoration:none}a:hover{color:#B7CBFF}
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
 gtag('consent','default',{analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});
+var phC=null;try{phC=localStorage.getItem('ph-consent');}catch(e){}
+if(phC==='granted')gtag('consent','update',{analytics_storage:'granted'});
 gtag('js',new Date());gtag('config','G-WTJL50VB1N');
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href;
-if(h.indexOf('calendar.google.com/calendar/appointments')>-1)gtag('event','book_session',{link_text:a.textContent.trim()});
-else if(h.indexOf('app.pharus.ai/new-organization')>-1)gtag('event','start_trial',{link_text:a.textContent.trim()});});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href,n,sec;
+if(h.indexOf('calendar.google.com/calendar/appointments')>-1)n='book_session';else if(h.indexOf('app.pharus.ai/new-organization')>-1)n='start_trial';else return;
+var el=a.closest('header,[data-section],section[id]');sec=el?(el.tagName==='HEADER'?'header':(el.dataset.section||el.id)):'other';
+var p={section:sec,link_text:a.textContent.trim()};
+if(sec==='pricing'){var c=a.closest('.ph-card'),m=c&&c.querySelector('.ph-mono');if(m)p.tier=m.textContent.trim().toLowerCase();}
+gtag('event',n,p);});
+(function(){var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+if(phC||!/^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe))/.test(tz))return;
+document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.setAttribute('role','dialog');b.setAttribute('aria-label','Cookie consent');
+b.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;margin:0 auto;z-index:50;background:#18181B;color:#E4E4E7;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;font-size:14px;line-height:1.5;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between';
+b.innerHTML='<span style="flex:1 1 240px">We use cookies to measure site traffic. Nothing is used for ads.</span><span style="display:flex;gap:8px"><button type="button" data-c="denied" style="height:36px;padding:0 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:#E4E4E7;font:inherit;cursor:pointer">Decline</button><button type="button" data-c="granted" style="height:36px;padding:0 14px;border-radius:8px;border:0;background:#6946BD;color:#fff;font:inherit;font-weight:600;cursor:pointer">Accept</button></span>';
+b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-c');if(!v)return;try{localStorage.setItem('ph-consent',v);}catch(x){}
+if(v==='granted')gtag('consent','update',{analytics_storage:'granted'});b.remove();});document.body.appendChild(b);});})();
 </script>
 </head>
 <body>
@@ -501,7 +513,7 @@ else if(h.indexOf('app.pharus.ai/new-organization')>-1)gtag('event','start_trial
 </header>
 
 <!-- ===================== HERO ===================== -->
-<section style="padding:96px 0 88px;overflow:hidden;position:relative">
+<section data-section="hero" style="padding:96px 0 88px;overflow:hidden;position:relative">
   <div class="ph-wrap">
     <div class="ph-hero-grid">
       <div style="display:flex;flex-direction:column;gap:28px">
@@ -832,7 +844,7 @@ else if(h.indexOf('app.pharus.ai/new-organization')>-1)gtag('event','start_trial
 </section>
 
 <!-- ===================== CLOSING CTA ===================== -->
-<section class="ph-sec">
+<section data-section="closing" class="ph-sec">
   <div class="ph-wrap">
     <div class="ph-card" style="padding:64px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;background:radial-gradient(circle at 50% 0px,rgba(105,70,189,0.38),transparent 55%),#0E0E11">
       <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#FFFFFF;max-width:700px">Stop doing the back office yourself.</h2>
@@ -843,7 +855,7 @@ else if(h.indexOf('app.pharus.ai/new-organization')>-1)gtag('event','start_trial
 </section>
 
 <!-- ===================== REFERRAL ===================== -->
-<section style="padding:0 0 96px">
+<section data-section="referral" style="padding:0 0 96px">
   <div class="ph-wrap">
     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:32px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)">
       <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 420px;min-width:0">
