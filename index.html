@@ -441,6 +441,16 @@ a{color:#8FB0FF;text-decoration:none}a:hover{color:#B7CBFF}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Pharus", "url": "https://pharus.ai/", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Inventory management for consumer goods brands. Pharus keeps track of everything that falls off your radar, from the PO you never placed to the bill nobody paid, and brings each one to you ready to approve.", "publisher": {"@type": "Organization", "name": "Pharus Insights Inc.", "url": "https://pharus.ai/"}}</script>
 <!-- Site analytics: add the snippet here before outreach (brief: no analytics on the live site). -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WTJL50VB1N"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+gtag('consent','default',{analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});
+gtag('js',new Date());gtag('config','G-WTJL50VB1N');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href;
+if(h.indexOf('calendar.google.com/calendar/appointments')>-1)gtag('event','book_session',{link_text:a.textContent.trim()});
+else if(h.indexOf('app.pharus.ai/new-organization')>-1)gtag('event','start_trial',{link_text:a.textContent.trim()});});
+</script>
 </head>
 <body>
 <div style="display:flex;flex-direction:column;min-height:100%">
