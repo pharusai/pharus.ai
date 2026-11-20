@@ -1,0 +1,31 @@
+# Pharus
+
+> Pharus is inventory management software for consumer goods (CPG) brands. It keeps one ledger of inventory, orders and payments across a brand's sales channels, warehouses and accounting system, drafts the routine work, and brings each action to the operator to approve. Nothing posts without approval.
+
+## What Pharus does
+
+- Tracks inventory across storefronts, marketplaces, warehouses and third-party logistics providers (3PLs)
+- Drafts sales orders, purchase orders, production and work orders, transfers, payment matches and journal entries from what it sees in connected systems
+- Flags problems before they cost money: a stockout before the next production run, an order that will ship short, stock in the wrong warehouse, a campaign selling past replenishment
+- Reports contribution margin by customer, channel and SKU
+
+## Who it is for
+
+Consumer goods brands that resell finished goods, manufacture or convert their own product, or sell wholesale to retailers and distributors.
+
+## What it connects to
+
+Examples include Shopify, Amazon, TikTok Shop, Meta Ads, Google Ads, QuickBooks, EDI, email, and 3PLs such as ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge.
+
+## Plans and pricing
+
+Three plans, set by business model: Standard (resellers), Pro (manufacturers) and Custom (wholesale, EDI and custom workflows). Pricing depends on what Pharus connects to, not on orders, users or revenue, and is quoted in a 30-minute working session on the brand's own data.
+
+## Links
+
+- [Website](https://pharus.ai/)
+- [Book a working session](https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU)
+- [Privacy policy](https://pharus.ai/privacy.html)
+- Contact: marshall@pharus.ai
+
+Pharus is made by Pharus Insights Inc.
