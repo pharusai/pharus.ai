@@ -24,7 +24,7 @@ Three plans, set by business model: Standard (resellers), Pro (manufacturers) an
 ## Links
 
 - [Website](https://pharus.ai/)
-- [Book a working session](https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU)
+- [Book a demo](https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU)
 - [Privacy policy](https://pharus.ai/privacy.html)
 - Contact: marshall@pharus.ai
 
