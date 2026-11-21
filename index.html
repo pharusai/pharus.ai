@@ -388,52 +388,226 @@
 }
 </style>
 <style>
-html{scroll-behavior:smooth}
-body{margin:0;background:#09090B;color:#E4E4E7;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:#8FB0FF;text-decoration:none}a:hover{color:#B7CBFF}
-*{box-sizing:border-box}
-.ph-wrap{max-width:1160px;margin:0 auto;padding:0 32px}
-.ph-sec{padding:112px 0}
-.ph-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:10px;font-size:15px;font-weight:600;white-space:nowrap;border:1px solid transparent;cursor:pointer;font-family:inherit}
-.ph-btn-primary{background:#5A8CFE;color:#09090B}.ph-btn-primary:hover{background:#7AA2FF;color:#09090B}
-.ph-btn-ghost{background:transparent;color:#E4E4E7;border-color:rgba(255,255,255,0.14)}.ph-btn-ghost:hover{color:#FFFFFF;border-color:rgba(255,255,255,0.3)}
-.ph-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#8FB0FF}
-.ph-mono{font-family:'JetBrains Mono',ui-monospace,monospace}
-.ph-card{background:#111113;border:1px solid rgba(255,255,255,0.08);border-radius:16px}
-.ph-nav a{color:#A1A1AA;font-size:14px;font-weight:500}.ph-nav a:hover{color:#FFFFFF}
-.ph-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center}
-.ph-why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.ph-notif-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.ph-price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.ph-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 48px}
-.ph-day-row{display:grid;grid-template-columns:96px minmax(0,1fr) 220px;gap:24px;align-items:start;padding:22px 0;border-top:1px solid rgba(255,255,255,0.08)}
-.ph-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.ph-logos{display:flex;flex-wrap:wrap;gap:12px 36px;justify-content:center;align-items:center}
-.ph-toggle button{height:36px;padding:0 16px;border-radius:8px;border:1px solid transparent;background:transparent;color:#A1A1AA;font:600 14px Inter,system-ui,sans-serif;cursor:pointer}
-.ph-toggle button.on{background:#18181B;color:#FFFFFF;border-color:rgba(255,255,255,0.12)}
-.ph-input{height:48px;flex:1 1 240px;min-width:0;padding:0 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.14);background:#09090B;color:#FFFFFF;font:400 15px Inter,system-ui,sans-serif}
-.ph-input::placeholder{color:#71717A}
-.ph-footer a{color:#A1A1AA;font-size:14px}.ph-footer a:hover{color:#FFFFFF}
-
-.ph-card.lt{background:#FFFFFF;border-color:#E4E4E7}
-.ph-btn-ghost.lt{color:#18181B;border-color:#D4D4D8}.ph-btn-ghost.lt:hover{color:#09090B;border-color:#18181B}
-.ph-eyebrow.lt{color:#3E74F5}
-.ph-toggle.lt button{color:#52525B}.ph-toggle.lt button.on{background:#18181B;color:#FFFFFF;border-color:#18181B}
-.ph-faq-grid.lt h3{color:#18181B}
-@media (max-width:900px){
-  .ph-hero-grid,.ph-why-grid,.ph-notif-grid,.ph-price-grid,.ph-faq-grid{grid-template-columns:minmax(0,1fr) !important}
-  .ph-day-row{grid-template-columns:72px minmax(0,1fr)}
-  .ph-day-row .ph-day-status{grid-column:2}
-  .ph-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ph-sec{padding:72px 0}
-  .ph-nav{display:none !important}
-  .ph-h1{font-size:44px !important;line-height:1.08 !important}
-  .ph-h2{font-size:32px !important}
+/* ---- Design tokens ---- */
+:root{
+  --bg:#09090B;--surface:#0E0E11;--card:#111113;--raised:#18181B;
+  --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);--line-3:rgba(255,255,255,.3);--grid:rgba(255,255,255,.045);--grain:.5;
+  --text:#E4E4E7;--strong:#FFFFFF;--muted:#A1A1AA;--dim:#8A8A93;
+  --accent:#5A8CFE;--accent-hi:#7AA2FF;--accent-t:#8FB0FF;--ok:#4ADE80;--warn:#FBBF24;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
+  --header-h:68px;--wrap:1160px;
 }
-@media (max-width:560px){.ph-hdr-cta{display:none !important}}
-</style>
-<style>
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}ul{padding:0;list-style:none}
+a{color:var(--accent-t);text-decoration:none}a:hover{color:#B7CBFF}
+:focus-visible{outline:2px solid var(--accent-t);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:var(--s4);top:-80px;z-index:100;background:var(--accent);color:#09090B;padding:var(--s3) var(--s4);border-radius:var(--r-sm);font-weight:600}
+.skip:focus{top:var(--s3);color:#09090B}
+svg.ico{width:14px;height:14px;flex:none}
+.ph-mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.ph-wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--s6)}
+.ph-sec{padding:var(--s9) 0;position:relative;isolation:isolate}
+.ph-sec.alt{background:var(--surface);border-block:1px solid var(--line)}
+.anchor{display:block}
+.stack-l{display:flex;flex-direction:column;gap:var(--s7)}
+.stack-s{display:flex;flex-direction:column;gap:var(--s5)}
+
+/* ---- Type ---- */
+.ph-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-t)}
+.ph-eyebrow.dim{color:var(--dim)}
+.ph-h1{font-size:clamp(40px,5.2vw,60px);line-height:1.05;letter-spacing:-.03em;font-weight:700;color:var(--strong)}
+.ph-h2{font-size:clamp(30px,3.6vw,40px);line-height:1.12;letter-spacing:-.025em;font-weight:700;color:var(--strong)}
+h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:var(--strong)}
+.lead{font-size:18px;line-height:1.6;color:var(--muted)}
+.accent{color:var(--accent-t)}
+.dim{color:var(--dim)}
+.sec-head{display:flex;flex-direction:column;gap:var(--s4);max-width:720px}
+
+/* ---- Buttons ---- */
+.ph-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);height:48px;padding:0 24px;border-radius:10px;font:600 15px/1 Inter,system-ui,sans-serif;white-space:nowrap;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.ph-btn-sm{height:40px;padding:0 16px;font-size:14px}
+.ph-btn-lg{height:52px;padding:0 32px;font-size:16px}
+.ph-btn-primary{background:var(--accent);color:#09090B}.ph-btn-primary:hover{background:var(--accent-hi);color:#09090B}
+.ph-btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}.ph-btn-ghost:hover{color:var(--strong);border-color:var(--line-3)}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--s3)}
+
+/* ---- Cards ---- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg)}
+
+/* ---- Header ---- */
+.ph-hdr{position:sticky;top:0;z-index:10;background:rgba(9,9,11,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:var(--s5)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--strong)}
+.brand-i{height:24px;width:auto;display:block}
+.brand-w{height:13px;width:auto;display:block;filter:brightness(0) invert(1)}
+.ph-nav{display:flex;gap:var(--s6)}
+.ph-nav a,.login{color:var(--muted);font-size:14px;font-weight:500}.ph-nav a:hover,.login:hover{color:var(--strong)}
+.hdr-r{display:flex;align-items:center;gap:var(--s5)}
+
+/* ---- Hero ---- */
+.hero{padding:var(--s9) 0;position:relative;overflow:hidden;background:radial-gradient(60% 50% at 80% 0%,rgba(90,140,254,.10),transparent 70%)}
+.ph-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:var(--s8);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:var(--s5);align-items:flex-start}
+.hero-lead{font-size:18px;line-height:1.6;color:var(--muted);max-width:540px}
+.checks{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);font-size:14px;color:var(--muted)}
+.checks li{display:flex;align-items:center;gap:var(--s2)}.checks .ico{color:#22C55E}
+.ov{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s4);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.ov-h,.row-b{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
+.ov-h{align-items:center}
+.ov-t{font-size:14px;font-weight:600;color:var(--strong)}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;color:#22C55E}
+.dot{width:7px;height:7px;border-radius:50%;background:#22C55E}
+.panel{background:var(--raised);border:1px solid rgba(255,255,255,.06);border-radius:var(--r-md);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s3)}
+.panel-a{border-color:rgba(90,140,254,.35)}
+.panel-l{font-size:13px;color:var(--muted)}
+.panel-v{font-size:13px;color:var(--strong);font-weight:600}
+.panel-t{font-size:13px;font-weight:600;color:var(--strong)}
+.acc-s{font-size:12px;color:var(--accent-t)}
+.pills{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.pill{font-size:12px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.kpis-w{display:flex;flex-direction:column;gap:10px}
+.ph-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3)}
+.kpi{background:var(--raised);border:1px solid rgba(255,255,255,.06);border-radius:var(--r-md);padding:var(--s3) 14px;display:flex;flex-direction:column;gap:var(--s1)}
+.kpi-l{font-size:11px;color:var(--muted)}
+.kpi-v{font-size:18px;font-weight:600;color:var(--strong)}.kpi-v.pos{color:var(--ok)}
+.decision{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:10px var(--s3);background:var(--bg);border-radius:10px}
+.decision>div{min-width:0}
+.decision-t{font-size:13px;font-weight:500;color:var(--strong)}
+.decision-s{font-size:12px;color:var(--muted);margin-top:2px}
+.tag{font-size:11px;letter-spacing:.06em;color:#09090B;background:var(--accent);border-radius:6px;padding:5px 9px;font-weight:600;flex:none}
+
+/* ---- Integrations strip ---- */
+.strip{border-block:1px solid var(--line);overflow:hidden}
+.strip-in{display:flex;flex-direction:column;align-items:center;gap:var(--s4);padding-block:var(--s6) var(--s4)}
+.marquee{display:flex;overflow:hidden;padding-bottom:var(--s6);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-t{display:flex;flex:none;align-items:center;gap:var(--s8);padding-right:var(--s8);min-width:100%;justify-content:space-around;animation:marquee 40s linear infinite}
+.marquee:hover .marquee-t{animation-play-state:paused}
+.marquee li{display:flex;align-items:center;gap:10px;color:var(--dim);font-size:15px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;transition:color .2s}
+.marquee li:hover{color:var(--strong)}
+.marquee svg{width:22px;height:22px;fill:currentColor;flex:none}
+@keyframes marquee{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none;justify-content:center}.marquee-t{animation:none;flex-wrap:wrap;justify-content:center;gap:var(--s4) var(--s6);padding:0}.marquee-t[aria-hidden]{display:none}}
+
+/* ---- Why ---- */
+.ph-why-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s5)}
+.why-card{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
+.why-card.w2{grid-column:span 2}.why-card.w3{grid-column:span 3}
+.why-card p{font-size:15px;line-height:1.6;color:var(--muted)}
+.num{font-size:12px;color:var(--accent-t);letter-spacing:.06em}
+.ph-notif-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}
+.notif{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.notif p{font-size:15px;line-height:1.55;color:var(--text);flex:1}
+.notif-h{display:flex;align-items:center;gap:10px}
+.avatar{width:28px;height:28px;border-radius:7px;background:var(--raised);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center}
+.avatar svg{height:12px;width:auto;display:block}
+.notif-n{font-size:14px;font-weight:600;color:var(--strong)}
+.notif-t{font-size:12px;color:var(--dim)}
+.acts{display:flex;align-items:center;gap:var(--s2)}
+.chip{font-size:13px;font-weight:600;color:var(--text);border:1px solid var(--line-2);border-radius:7px;padding:6px 12px}
+.chip-p{color:#09090B;background:var(--accent);border-color:var(--accent)}
+.hint{font-size:12px;color:var(--dim)}
+.ok{font-size:12px;color:var(--ok)}.warn{color:var(--warn)}
+
+/* ---- Day ---- */
+.days{border-bottom:1px solid var(--line)}
+.ph-day-row{display:grid;grid-template-columns:96px minmax(0,1fr) 240px;gap:var(--s5);align-items:start;padding:var(--s5) 0;border-top:1px solid var(--line)}
+.day-d{font-size:13px;color:var(--accent-t);padding-top:3px}
+.day-t{font-size:17px;font-weight:600;color:var(--strong)}
+.day-s{font-size:15px;line-height:1.5;color:var(--muted);margin-top:var(--s1)}
+.ph-day-status{font-size:13px;padding-top:3px;text-align:right}.ph-day-status.ok{font-size:13px}
+.tally{display:flex;flex-direction:column;gap:6px;font-size:22px;font-weight:600;color:var(--strong);letter-spacing:-.01em}
+.tally .dim{color:#71717A}
+
+/* ---- Plans ---- */
+.ph-price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);align-items:stretch}
+.plan{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s5)}
+.plan.feat{border-color:rgba(90,140,254,.5);background:linear-gradient(180deg,rgba(90,140,254,.07),transparent 40%),var(--card)}
+.plan-h{display:flex;flex-direction:column;gap:6px}
+.plan-top{display:flex;align-items:center;justify-content:space-between;min-height:24px}
+.plan-n{font-size:12px;color:var(--accent-t);letter-spacing:.06em}
+.badge{font-size:11px;color:#09090B;background:var(--accent);border-radius:6px;padding:4px 8px;font-weight:600}
+.plan-sub{font-size:15px;color:var(--muted)}
+.plan-lead{font-size:16px;font-weight:600;line-height:1.45;color:var(--strong)}
+.plan-list{display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--text);flex:1}
+.plan-list li{display:flex;gap:10px;line-height:1.45}.dash{color:var(--accent-t)}
+.note{font-size:15px;color:var(--dim);text-align:center}
+
+/* ---- FAQ ---- */
+.ph-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s7)}
+.faq-i{display:flex;flex-direction:column;gap:10px;padding:var(--s5) 0;border-top:1px solid var(--line)}
+.faq-i h3{font-size:18px}
+.faq-i p{font-size:15px;line-height:1.6;color:var(--muted)}
+
+/* ---- Closing CTA + referral ---- */
+.cta-sec{padding:var(--s9) 0 var(--s8);background:radial-gradient(60% 90% at 50% 0%,rgba(105,70,189,.34),transparent 70%),var(--bg)}
+.cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s5)}
+.cta .ph-h2{max-width:700px}.cta .lead{max-width:620px}
+.referral{padding:0 0 var(--s9)}
+.ref-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s5) var(--s7);padding:var(--s6) 0;border-block:1px solid var(--line)}
+.ref-t{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.ref-h{font-size:18px;font-weight:600;color:var(--strong)}
+.ref-p{font-size:15px;line-height:1.55;color:var(--muted)}
+
+/* ---- Footer ---- */
+.ph-footer{padding:var(--s7) 0;border-top:1px solid var(--line)}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s5) var(--s7)}
+.foot-b{display:flex;flex-direction:column;gap:10px;flex:1 1 320px}
+.foot-b .brand-i{height:22px}.foot-b .brand-w{height:12px}
+.foot-d{font-size:14px;color:var(--dim);max-width:360px}
+.foot-n{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);align-items:flex-start}
+.ph-footer a{color:var(--muted);font-size:14px}.ph-footer a:hover{color:var(--strong)}
+.legal{flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2) var(--s5);font-size:12px;color:var(--dim);padding-top:var(--s4);border-top:1px solid var(--line)}
+
+/* ---- Responsive ---- */
+@media (max-width:1000px){
+  .ph-nav{gap:var(--s5)}
+  .ph-day-row{grid-template-columns:80px minmax(0,1fr) 200px}
+}
+@media (max-width:900px){
+  .ph-hero-grid,.ph-notif-grid,.ph-price-grid,.ph-faq-grid{grid-template-columns:minmax(0,1fr)}
+  .ph-why-grid{grid-template-columns:minmax(0,1fr)}
+  .why-card.w2,.why-card.w3{grid-column:auto}
+  .ph-day-row{grid-template-columns:72px minmax(0,1fr)}
+  .ph-day-status{grid-column:2;text-align:left;padding-top:0}
+  .ph-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ph-sec{padding:72px 0}.hero{padding:64px 0}
+  .ph-nav{display:none}
+  .cta{padding:var(--s7) var(--s5)}
+  .stack-l{gap:var(--s6)}
+}
+@media (max-width:560px){
+  .ph-wrap{padding:0 var(--s4)}
+  .ph-hdr-cta{display:none}
+  .why-card,.plan{padding:var(--s5)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
+
+/* ---- Texture: fine grid + grain behind every section, faded at the edges ---- */
+.ph-sec::before,.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:64px 64px;background-position:center top;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 20%,transparent 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 20%,transparent 100%)}
+.ph-sec::after,.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain);mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+.hero{isolation:isolate}
+.hero::before{-webkit-mask-image:radial-gradient(ellipse 70% 80% at 75% 20%,#000 10%,transparent 100%);mask-image:radial-gradient(ellipse 70% 80% at 75% 20%,#000 10%,transparent 100%)}
+.hero .ph-wrap,.ph-sec .ph-wrap{position:relative}
+
+/* ---- Light sections: same tokens, inverted ---- */
+.lt{--bg:#F4F4F5;--surface:#FFFFFF;--card:#FFFFFF;--raised:#F4F4F5;--text:#27272A;--strong:#09090B;--muted:#52525B;--dim:#6B6B73;
+  --line:rgba(9,9,11,.10);--line-2:#D4D4D8;--line-3:#18181B;--grid:rgba(9,9,11,.05);--accent-t:#2F63E0;--grain:.25;
+  background:var(--bg);color:var(--text)}
+.lt a{color:#2F63E0}
+.lt .ph-btn-primary{color:#09090B}
+.lt .card{box-shadow:0 1px 2px rgba(9,9,11,.04),0 8px 24px rgba(9,9,11,.04)}
+.lt .plan.feat{border-color:rgba(47,99,224,.55);background:linear-gradient(180deg,rgba(90,140,254,.10),transparent 45%),#fff;box-shadow:0 12px 40px rgba(47,99,224,.14)}
+.lt .avatar{background:#09090B}
+.lt .chip{color:#27272A}
+.lt .ok{color:#15803D}
+.lt .num,.lt .plan-n,.lt .dash{color:#2F63E0}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharus.ai/#organization", "name": "Pharus", "legalName": "Pharus Insights Inc.", "url": "https://pharus.ai/", "logo": "https://pharus.ai/apple-touch-icon.png", "description": "Pharus makes inventory management software for consumer goods brands.", "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "marshall@pharus.ai"}}, {"@type": "WebSite", "@id": "https://pharus.ai/#website", "url": "https://pharus.ai/", "name": "Pharus", "publisher": {"@id": "https://pharus.ai/#organization"}, "inLanguage": "en-US"}, {"@type": "SoftwareApplication", "@id": "https://pharus.ai/#software", "name": "Pharus", "url": "https://pharus.ai/", "applicationCategory": "BusinessApplication", "applicationSubCategory": "Inventory management software", "operatingSystem": "Web", "description": "Pharus is inventory management software for consumer goods brands. It tracks orders, stock and payments, and brings each action to you to approve.", "audience": {"@type": "BusinessAudience", "audienceType": "Consumer goods (CPG) brands"}, "featureList": ["Inventory tracking across sales channels, warehouses and 3PLs", "Sales orders, purchase orders, production and work orders", "Payment and remittance matching", "Stockout and reorder recommendations", "Contribution margin by customer, channel and SKU", "Every action drafted for the operator to approve"], "publisher": {"@id": "https://pharus.ai/#organization"}}, {"@type": "FAQPage", "@id": "https://pharus.ai/#faq", "mainEntity": [{"@type": "Question", "name": "Is this another system I have to manage?", "acceptedAnswer": {"@type": "Answer", "text": "No. It works with the tools you already use. You approve its work from email or Slack."}}, {"@type": "Question", "name": "Will it do anything without asking me?", "acceptedAnswer": {"@type": "Answer", "text": "No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on."}}, {"@type": "Question", "name": "Does it need access to my email?", "acceptedAnswer": {"@type": "Answer", "text": "Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you."}}, {"@type": "Question", "name": "How long does setup take?", "acceptedAnswer": {"@type": "Answer", "text": "Usually within your first week. We set it up with you from your real data and stay through the first live orders."}}, {"@type": "Question", "name": "Does it work with my 3PL?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session."}}, {"@type": "Question", "name": "What does it connect to?", "acceptedAnswer": {"@type": "Answer", "text": "Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few."}}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTJL50VB1N"></script>
@@ -456,7 +630,7 @@ else if(sec==='referral'){n='referral_click';p.method=h.indexOf('mailto:')===0?'
 else if(h.indexOf('mailto:')===0)n='contact_click';
 else if(h.indexOf('https://app.pharus.ai')===0)n='log_in';
 else return;
-if(sec==='plans'){var c=a.closest('.ph-card'),m=c&&c.querySelector('.ph-mono');if(m)p.tier=m.textContent.trim().toLowerCase();}
+if(sec==='plans'){var c=a.closest('[data-tier]');if(c)p.tier=c.getAttribute('data-tier');}
 gtag('event',n,p);});
 (function(){if(phC||!phEU)return;
 document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.setAttribute('role','dialog');b.setAttribute('aria-label','Cookie consent');
@@ -467,7 +641,7 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </script>
 </head>
 <body>
-<div style="display:flex;flex-direction:column;min-height:100%">
+<a class="skip" href="#main">Skip to content</a>
 <svg width="0" height="0" aria-hidden="true" style="position: absolute;">
   <defs>
     <linearGradient id="pg1" x1="48" y1="28.6" x2="100.2" y2="28.6" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5a8cfe"></stop><stop offset="1" stop-color="#cc72e9" stop-opacity=".7"></stop></linearGradient>
@@ -492,92 +666,61 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
     <path d="M89.5,84.2c1-.6,2.2-.9,3.6-.9v4.3h-1.1c-1.6,0-2.8.4-3.7,1.2-.8.8-1.3,2.2-1.3,4.3v10.5h-4.1v-20h4.1v2.9c.6-1,1.4-1.8,2.4-2.4Z"></path>
     <path d="M115.4,83.7v20h-4.1v-2.4c-.7.8-1.5,1.5-2.6,1.9-1.1.5-2.2.7-3.4.7s-3-.3-4.2-1c-1.2-.7-2.2-1.6-2.9-2.9-.7-1.3-1.1-2.8-1.1-4.6v-11.7h4.1v11.1c0,1.8.4,3.2,1.3,4.1.9,1,2.1,1.4,3.7,1.4s2.8-.5,3.7-1.4c.9-1,1.4-2.3,1.4-4.1v-11.1h4.1Z"></path>
     <path d="M124.2,103.1c-1.2-.6-2.2-1.3-3-2.3s-1.1-2.1-1.2-3.3h4.3c0,.8.5,1.6,1.2,2.1.7.6,1.7.9,2.8.9s2.1-.2,2.7-.7c.6-.4,1-1,1-1.7s-.4-1.3-1.1-1.7-1.8-.8-3.4-1.2c-1.5-.4-2.7-.8-3.7-1.2-.9-.4-1.8-1-2.4-1.8-.7-.8-1-1.8-1-3.2s.3-2,.9-2.9,1.5-1.6,2.7-2.1c1.2-.5,2.5-.8,4-.8,2.3,0,4.1.6,5.5,1.7,1.4,1.1,2.1,2.7,2.2,4.7h-4.1c0-.9-.4-1.6-1.1-2.1-.7-.5-1.5-.8-2.6-.8s-1.9.2-2.5.6-.9,1-.9,1.6.2,1,.6,1.3.9.6,1.4.9c.6.2,1.4.5,2.5.8,1.5.4,2.6.8,3.6,1.2.9.4,1.7,1,2.4,1.8.7.8,1,1.8,1.1,3.1,0,1.1-.3,2.2-.9,3-.6.9-1.5,1.6-2.7,2.1s-2.5.8-4,.8-3-.3-4.2-.9Z"></path>
-  </g></g></symbol></svg>
+  </g></g></symbol><symbol id="lg-shopify" viewBox="0 0 24 24"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></symbol><symbol id="lg-amazon" viewBox="2.167 .438 251.038 259.969"><path d="m221.503 210.324c-105.235 50.083-170.545 8.18-212.352-17.271-2.587-1.604-6.984.375-3.169 4.757 13.928 16.888 59.573 57.593 119.153 57.593 59.621 0 95.09-32.532 99.527-38.207 4.407-5.627 1.294-8.731-3.16-6.872zm29.555-16.322c-2.826-3.68-17.184-4.366-26.22-3.256-9.05 1.078-22.634 6.609-21.453 9.93.606 1.244 1.843.686 8.06.127 6.234-.622 23.698-2.826 27.337 1.931 3.656 4.79-5.57 27.608-7.255 31.288-1.628 3.68.622 4.629 3.68 2.178 3.016-2.45 8.476-8.795 12.14-17.774 3.639-9.028 5.858-21.622 3.71-24.424z"/><path d="m150.744 108.13c0 13.141.332 24.1-6.31 35.77-5.361 9.489-13.853 15.324-23.341 15.324-12.952 0-20.495-9.868-20.495-24.432 0-28.75 25.76-33.968 50.146-33.968zm34.015 82.216c-2.23 1.992-5.456 2.135-7.97.806-11.196-9.298-13.189-13.615-19.356-22.487-18.502 18.882-31.596 24.527-55.601 24.527-28.37 0-50.478-17.506-50.478-52.565 0-27.373 14.85-46.018 35.96-55.126 18.313-8.066 43.884-9.489 63.43-11.718v-4.365c0-8.018.616-17.506-4.08-24.432-4.128-6.215-12.003-8.777-18.93-8.777-12.856 0-24.337 6.594-27.136 20.257-.57 3.037-2.799 6.026-5.835 6.168l-32.735-3.51c-2.751-.618-5.787-2.847-5.028-7.07 7.543-39.66 43.36-51.616 75.43-51.616 16.415 0 37.858 4.365 50.81 16.795 16.415 15.323 14.849 35.77 14.849 58.02v52.565c0 15.798 6.547 22.724 12.714 31.264 2.182 3.036 2.657 6.69-.095 8.966-6.879 5.74-19.119 16.415-25.855 22.393l-.095-.095"/><path d="m221.503 210.324c-105.235 50.083-170.545 8.18-212.352-17.271-2.587-1.604-6.984.375-3.169 4.757 13.928 16.888 59.573 57.593 119.153 57.593 59.621 0 95.09-32.532 99.527-38.207 4.407-5.627 1.294-8.731-3.16-6.872zm29.555-16.322c-2.826-3.68-17.184-4.366-26.22-3.256-9.05 1.078-22.634 6.609-21.453 9.93.606 1.244 1.843.686 8.06.127 6.234-.622 23.698-2.826 27.337 1.931 3.656 4.79-5.57 27.608-7.255 31.288-1.628 3.68.622 4.629 3.68 2.178 3.016-2.45 8.476-8.795 12.14-17.774 3.639-9.028 5.858-21.622 3.71-24.424z"/><path d="m150.744 108.13c0 13.141.332 24.1-6.31 35.77-5.361 9.489-13.853 15.324-23.341 15.324-12.952 0-20.495-9.868-20.495-24.432 0-28.75 25.76-33.968 50.146-33.968zm34.015 82.216c-2.23 1.992-5.456 2.135-7.97.806-11.196-9.298-13.189-13.615-19.356-22.487-18.502 18.882-31.596 24.527-55.601 24.527-28.37 0-50.478-17.506-50.478-52.565 0-27.373 14.85-46.018 35.96-55.126 18.313-8.066 43.884-9.489 63.43-11.718v-4.365c0-8.018.616-17.506-4.08-24.432-4.128-6.215-12.003-8.777-18.93-8.777-12.856 0-24.337 6.594-27.136 20.257-.57 3.037-2.799 6.026-5.835 6.168l-32.735-3.51c-2.751-.618-5.787-2.847-5.028-7.07 7.543-39.66 43.36-51.616 75.43-51.616 16.415 0 37.858 4.365 50.81 16.795 16.415 15.323 14.849 35.77 14.849 58.02v52.565c0 15.798 6.547 22.724 12.714 31.264 2.182 3.036 2.657 6.69-.095 8.966-6.879 5.74-19.119 16.415-25.855 22.393l-.095-.095"/></symbol><symbol id="lg-tiktok" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol><symbol id="lg-meta" viewBox="0 0 24 24"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></symbol><symbol id="lg-googleads" viewBox="0 0 24 24"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></symbol><symbol id="lg-qb" viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm.642 4.1335c.9554 0 1.7296.776 1.7296 1.7332v9.0667h1.6c1.614 0 2.9275-1.3156 2.9275-2.933 0-1.6173-1.3136-2.9333-2.9276-2.9333h-.6654V7.3334h.6654c2.5722 0 4.6577 2.0897 4.6577 4.667 0 2.5774-2.0855 4.6666-4.6577 4.6666H12.642zM7.9837 7.333h3.3291v12.533c-.9555 0-1.73-.7759-1.73-1.7332V9.0662H7.9837c-1.6146 0-2.9277 1.316-2.9277 2.9334 0 1.6175 1.3131 2.9333 2.9277 2.9333h.6654v1.7332h-.6654c-2.5725 0-4.6577-2.0892-4.6577-4.6665 0-2.5771 2.0852-4.6666 4.6577-4.6666Z"/></symbol><symbol id="lg-gmail" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></symbol><symbol id="lg-slack" viewBox="0 0 127 127"><path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z"/><path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H13.9C6.6 60.1.7 54.2.7 46.9c0-7.3 5.9-13.2 13.2-13.2H47z"/><path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z"/><path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z"/></symbol><symbol id="lg-3pl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M3 9l9-5 9 5v11H3zM8 20v-6h8v6"/></symbol><symbol id="lg-edi" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 8h14m-4-4l4 4-4 4M20 16H6m4-4l-4 4 4 4"/></symbol>  <symbol id="ph-check" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
 <!-- ===================== HEADER ===================== -->
-<header id="top" class="ph-hdr" style="position:sticky;top:0;z-index:10;background:rgba(9,9,11,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)">
-  <div class="ph-wrap" style="display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px">
-    <a href="#top" aria-label="Pharus home" style="display:flex;align-items:center;gap:9px;color:#FFFFFF">
-      <svg viewBox="0 0 90.5 57" role="img" aria-label="Pharus" style="height:24px;width:auto;display:block"><use href="#ph-icon"></use></svg>
-      <svg viewBox="0 0 124.6 27.8" aria-hidden="true" style="height:13px;width:auto;display:block;filter:brightness(0) invert(1)"><use href="#ph-word"></use></svg>
+<header id="top" class="ph-hdr">
+  <div class="ph-wrap hdr-in">
+    <a href="#top" class="brand" aria-label="Pharus home">
+      <svg viewBox="0 0 90.5 57" role="img" aria-label="Pharus" class="brand-i"><use href="#ph-icon"></use></svg>
+      <svg viewBox="0 0 124.6 27.8" aria-hidden="true" class="brand-w"><use href="#ph-word"></use></svg>
     </a>
-    <nav class="ph-nav" aria-label="Primary" style="display:flex;gap:28px">
+    <nav class="ph-nav" aria-label="Primary">
       <a href="#why">Why</a>
       <a href="#day">Week in the Life</a>
       <a href="#plans">Plans</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:20px">
-      <a href="https://app.pharus.ai" style="color:#A1A1AA;font-size:14px;font-weight:500">Log in</a>
-      <a class="ph-btn ph-btn-primary ph-hdr-cta" style="height:40px;padding:0 16px;font-size:14px" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
+    <div class="hdr-r">
+      <a class="login" href="https://app.pharus.ai">Log in</a>
+      <a class="ph-btn ph-btn-primary ph-btn-sm ph-hdr-cta" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
     </div>
   </div>
 </header>
-<main>
+<main id="main">
 
 <!-- ===================== HERO ===================== -->
-<section data-section="hero" style="padding:96px 0 88px;overflow:hidden;position:relative">
+<section data-section="hero" class="hero">
   <div class="ph-wrap">
     <div class="ph-hero-grid">
-      <div style="display:flex;flex-direction:column;gap:28px">
+      <div class="hero-copy">
         <div class="ph-eyebrow">Inventory management for consumer goods brands</div>
-        <h1 class="ph-h1" style="margin:0;font-size:60px;line-height:1.04;letter-spacing:-0.03em;font-weight:700;color:#FFFFFF">Inventory, <span style="color:#8FB0FF">managed.</span></h1>
-        <p style="margin:0;font-size:19px;line-height:1.55;color:#A1A1AA;max-width:540px">Pharus watches your storefronts, 3PLs, inbox and accounting system and keeps track of everything that falls off your radar: the PO you never placed, the bill nobody paid, the order that will ship short. Each one comes to you ready to approve, so you're not tracking it down yourself.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <h1 class="ph-h1">Inventory, <span class="accent">managed.</span></h1>
+        <p class="hero-lead">Pharus watches your storefronts, 3PLs, inbox and accounting system and keeps track of everything that falls off your radar: the PO you never placed, the bill nobody paid, the order that will ship short. Each one comes to you ready to approve, so you're not tracking it down yourself.</p>
+        <div class="btn-row">
           <a class="ph-btn ph-btn-primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
           <a class="ph-btn ph-btn-ghost" href="#day">See a week in the life →</a>
         </div>
-        <ul style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px;color:#A1A1AA">
-          <li style="display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Set up with you, not by you</li>
-          <li style="display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Lives in your email and Slack</li>
-          <li style="display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing posts without your approval</li>
+        <ul class="checks">
+          <li><svg class="ico" aria-hidden="true"><use href="#ph-check"/></svg>Set up with you, not by you</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#ph-check"/></svg>Lives in your email and Slack</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#ph-check"/></svg>Nothing posts without your approval</li>
         </ul>
       </div>
-
-      <!-- Operating view mockup -->
-      <div class="ph-card" aria-label="Pharus operating view" style="padding:22px;display:flex;flex-direction:column;gap:18px;box-shadow:0 30px 80px rgba(0,0,0,0.5)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:14px;font-weight:600;color:#FFFFFF">Pharus operating view</div>
-          <div style="display:flex;align-items:center;gap:6px" class="ph-mono"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block"></span><span style="font-size:11px;letter-spacing:0.08em;color:#22C55E">LIVE</span></div>
+      <div class="card ov" role="img" aria-label="Pharus operating view">
+        <div class="ov-h"><div class="ov-t">Pharus operating view</div><div class="live ph-mono"><span class="dot"></span>LIVE</div></div>
+        <div class="panel">
+          <div class="row-b"><div class="panel-l">Ready for your approval</div><div class="ph-mono panel-v">42 items</div></div>
+          <div class="pills"><span class="pill">Orders drafted</span><span class="pill">POs proposed</span><span class="pill">Payments matched</span><span class="pill">Counts reconciled</span><span class="pill">Entries proposed</span></div>
         </div>
-
-        <div style="background:#18181B;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between">
-            <div style="font-size:13px;color:#A1A1AA">Ready for your approval</div>
-            <div class="ph-mono" style="font-size:13px;color:#FFFFFF;font-weight:600">42 items</div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px">
-            <span style="font-size:12px;color:#E4E4E7;background:#09090B;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:5px 10px">Orders drafted</span>
-            <span style="font-size:12px;color:#E4E4E7;background:#09090B;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:5px 10px">POs proposed</span>
-            <span style="font-size:12px;color:#E4E4E7;background:#09090B;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:5px 10px">Payments matched</span>
-            <span style="font-size:12px;color:#E4E4E7;background:#09090B;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:5px 10px">Counts reconciled</span>
-            <span style="font-size:12px;color:#E4E4E7;background:#09090B;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:5px 10px">Entries proposed</span>
-          </div>
+        <div class="kpis-w"><div class="panel-l">Month to date</div>
+          <div class="ph-kpi"><div class="kpi"><div class="kpi-l">Revenue</div><div class="kpi-v ph-mono">$310K</div></div><div class="kpi"><div class="kpi-l">COGS</div><div class="kpi-v ph-mono">−$175K</div></div><div class="kpi"><div class="kpi-l">OpEx + S&amp;M</div><div class="kpi-v ph-mono">−$92K</div></div><div class="kpi"><div class="kpi-l">Contribution</div><div class="kpi-v ph-mono pos">$43K</div></div></div>
         </div>
-
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="font-size:13px;color:#A1A1AA">Month to date</div>
-          <div class="ph-kpi">
-            <div style="background:#18181B;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#A1A1AA">Revenue</div><div class="ph-mono" style="font-size:18px;font-weight:600;color:#FFFFFF">$310K</div></div>
-            <div style="background:#18181B;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#A1A1AA">COGS</div><div class="ph-mono" style="font-size:18px;font-weight:600;color:#FFFFFF">−$175K</div></div>
-            <div style="background:#18181B;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#A1A1AA">OpEx + S&amp;M</div><div class="ph-mono" style="font-size:18px;font-weight:600;color:#FFFFFF">−$92K</div></div>
-            <div style="background:#18181B;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#A1A1AA">Contribution</div><div class="ph-mono" style="font-size:18px;font-weight:600;color:#4ADE80">$43K</div></div>
-          </div>
-        </div>
-
-        <div style="background:#18181B;border:1px solid rgba(90,140,254,0.35);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between">
-            <div style="font-size:13px;font-weight:600;color:#FFFFFF">Needs a real decision</div>
-            <div class="ph-mono" style="font-size:12px;color:#8FB0FF">2 decisions</div>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:#09090B;border-radius:10px">
-            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><div style="font-size:13px;color:#FFFFFF;font-weight:500">Move 120 units to Amazon?</div><div style="font-size:12px;color:#A1A1AA">Demand is 2.4× higher there this week</div></div>
-            <span class="ph-mono" style="font-size:11px;letter-spacing:0.06em;color:#09090B;background:#5A8CFE;border-radius:6px;padding:5px 9px;font-weight:600">REVIEW</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:#09090B;border-radius:10px">
-            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><div style="font-size:13px;color:#FFFFFF;font-weight:500">Hold spend on SKU 2140?</div><div style="font-size:12px;color:#A1A1AA">11 days of stock · replenishment in 19</div></div>
-            <span class="ph-mono" style="font-size:11px;letter-spacing:0.06em;color:#09090B;background:#5A8CFE;border-radius:6px;padding:5px 9px;font-weight:600">REVIEW</span>
-          </div>
+        <div class="panel panel-a">
+          <div class="row-b"><div class="panel-t">Needs a real decision</div><div class="ph-mono acc-s">2 decisions</div></div>
+          <div class="decision"><div><div class="decision-t">Move 120 units to Amazon?</div><div class="decision-s">Demand is 2.4× higher there this week</div></div><span class="tag ph-mono">REVIEW</span></div>
+          <div class="decision"><div><div class="decision-t">Hold spend on SKU 2140?</div><div class="decision-s">11 days of stock · replenishment in 19</div></div><span class="tag ph-mono">REVIEW</span></div>
         </div>
       </div>
     </div>
@@ -585,270 +728,134 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </section>
 
 <!-- ===================== INTEGRATIONS STRIP ===================== -->
-<section style="padding:28px 0 36px;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
-  <div class="ph-wrap" style="display:flex;flex-direction:column;gap:18px;align-items:center">
-    <div class="ph-eyebrow" style="color:#71717A">Works where your business already runs</div>
-    <div class="ph-logos ph-mono" style="font-size:13px;color:#A1A1AA;font-weight:500">
-      <span>Shopify</span><span>Amazon</span><span>TikTok Shop</span><span>Meta Ads</span><span>Google Ads</span><span>3PLs</span><span>EDI</span><span>QuickBooks</span><span>Gmail</span><span>Slack</span>
-    </div>
+<section class="strip" aria-label="Integrations">
+  <div class="ph-wrap strip-in">
+    <div class="ph-eyebrow dim">Works where your business already runs</div>
+  </div>
+  <div class="marquee">
+    <ul class="marquee-t"><li><svg aria-hidden="true"><use href="#lg-shopify"/></svg><span>Shopify</span></li><li><svg aria-hidden="true"><use href="#lg-amazon"/></svg><span>Amazon</span></li><li><svg aria-hidden="true"><use href="#lg-tiktok"/></svg><span>TikTok Shop</span></li><li><svg aria-hidden="true"><use href="#lg-meta"/></svg><span>Meta Ads</span></li><li><svg aria-hidden="true"><use href="#lg-googleads"/></svg><span>Google Ads</span></li><li><svg aria-hidden="true"><use href="#lg-3pl"/></svg><span>3PLs</span></li><li><svg aria-hidden="true"><use href="#lg-edi"/></svg><span>EDI</span></li><li><svg aria-hidden="true"><use href="#lg-qb"/></svg><span>QuickBooks</span></li><li><svg aria-hidden="true"><use href="#lg-gmail"/></svg><span>Gmail</span></li><li><svg aria-hidden="true"><use href="#lg-slack"/></svg><span>Slack</span></li></ul>
+    <ul class="marquee-t" aria-hidden="true"><li><svg aria-hidden="true"><use href="#lg-shopify"/></svg><span>Shopify</span></li><li><svg aria-hidden="true"><use href="#lg-amazon"/></svg><span>Amazon</span></li><li><svg aria-hidden="true"><use href="#lg-tiktok"/></svg><span>TikTok Shop</span></li><li><svg aria-hidden="true"><use href="#lg-meta"/></svg><span>Meta Ads</span></li><li><svg aria-hidden="true"><use href="#lg-googleads"/></svg><span>Google Ads</span></li><li><svg aria-hidden="true"><use href="#lg-3pl"/></svg><span>3PLs</span></li><li><svg aria-hidden="true"><use href="#lg-edi"/></svg><span>EDI</span></li><li><svg aria-hidden="true"><use href="#lg-qb"/></svg><span>QuickBooks</span></li><li><svg aria-hidden="true"><use href="#lg-gmail"/></svg><span>Gmail</span></li><li><svg aria-hidden="true"><use href="#lg-slack"/></svg><span>Slack</span></li></ul>
   </div>
 </section>
 
 <!-- ===================== WHY ===================== -->
-<section id="why" class="ph-sec" style="scroll-margin-top:68px;background:#FFFFFF;color:#18181B">
-  <div class="ph-wrap" style="display:flex;flex-direction:column;gap:48px">
-    <div style="display:flex;flex-direction:column;gap:18px;max-width:760px">
-      <div class="ph-eyebrow lt">Has this happened to you?</div>
-      <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#18181B">Five things that stop happening.</h2>
-      <p style="margin:0;font-size:18px;line-height:1.55;color:#52525B">Pharus keeps one ledger of what you have, what's committed and what's on the way, checks everything against it, and brings you the fix to approve.</p>
+<section id="why" class="ph-sec lt">
+  <div class="ph-wrap stack-l">
+    <div class="sec-head"><div class="ph-eyebrow">Has this happened to you?</div><h2 class="ph-h2">Five things that stop happening.</h2><p class="lead">Pharus keeps one ledger of what you have, what's committed and what's on the way, checks everything against it, and brings you the fix to approve.</p></div>
+    <div class="ph-why-grid">
+<article class="card why-card w2"><div class="num ph-mono">01</div><h3>You were on the phone all day and logged none of it.</h3><p>A transfer went to Amazon, the co-pack shipped Friday, thirty orders got handled. When you log in, every one is already drafted from your inbox and your platforms. Approve, approve, approve.</p></article>
+<article class="card why-card w2"><div class="num ph-mono">02</div><h3>The stock is in the wrong warehouse.</h3><p>Orders came in and you have the units, just not where they ship from. Pharus recommends the transfer, routes the order to one location, and drafts the emails to both 3PLs.</p></article>
+<article class="card why-card w2"><div class="num ph-mono">03</div><h3>You placed the production order. You were out of two ingredients.</h3><p>Pharus checks the bill of materials before the run, finds the vendors you've used, their minimums and the next price break, and drafts the POs.</p></article>
+<article class="card why-card w3"><div class="num ph-mono">04</div><h3>It was selling faster than you noticed.</h3><p>A SKU outruns its history. Pharus sees it first, recommends the production order early, and spares you the air freight. One brand paid $5,000 to learn this the other way.</p></article>
+<article class="card why-card w3"><div class="num ph-mono">05</div><h3>You don't know which customers make money.</h3><p>Contribution margin by customer, channel and SKU, from the same ledger that books the orders. No spreadsheet to rebuild every month.</p></article>
     </div>
-
-    <div class="ph-why-grid" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-      <div class="ph-card lt" style="padding:28px;display:flex;flex-direction:column;gap:14px">
-        <div class="ph-mono" style="font-size:12px;color:#3E74F5">01</div>
-        <h3 style="margin:0;font-size:21px;font-weight:600;color:#18181B;letter-spacing:-0.01em;line-height:1.25">You were on the phone all day and logged none of it.</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">A transfer went to Amazon, the co-pack shipped Friday, thirty orders got handled. When you log in, every one is already drafted from your inbox and your platforms. Approve, approve, approve.</p>
-      </div>
-      <div class="ph-card lt" style="padding:28px;display:flex;flex-direction:column;gap:14px">
-        <div class="ph-mono" style="font-size:12px;color:#3E74F5">02</div>
-        <h3 style="margin:0;font-size:21px;font-weight:600;color:#18181B;letter-spacing:-0.01em;line-height:1.25">The stock is in the wrong warehouse.</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Orders came in and you have the units, just not where they ship from. Pharus recommends the transfer, routes the order to one location, and drafts the emails to both 3PLs.</p>
-      </div>
-      <div class="ph-card lt" style="padding:28px;display:flex;flex-direction:column;gap:14px">
-        <div class="ph-mono" style="font-size:12px;color:#3E74F5">03</div>
-        <h3 style="margin:0;font-size:21px;font-weight:600;color:#18181B;letter-spacing:-0.01em;line-height:1.25">You placed the production order. You were out of two ingredients.</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Pharus checks the bill of materials before the run, finds the vendors you've used, their minimums and the next price break, and drafts the POs.</p>
-      </div>
-    </div>
-    <div class="ph-why-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-      <div class="ph-card lt" style="padding:28px;display:flex;flex-direction:column;gap:14px">
-        <div class="ph-mono" style="font-size:12px;color:#3E74F5">04</div>
-        <h3 style="margin:0;font-size:21px;font-weight:600;color:#18181B;letter-spacing:-0.01em;line-height:1.25">It was selling faster than you noticed.</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">A SKU outruns its history. Pharus sees it first, recommends the production order early, and spares you the air freight. One brand paid $5,000 to learn this the other way.</p>
-      </div>
-      <div class="ph-card lt" style="padding:28px;display:flex;flex-direction:column;gap:14px">
-        <div class="ph-mono" style="font-size:12px;color:#3E74F5">05</div>
-        <h3 style="margin:0;font-size:21px;font-weight:600;color:#18181B;letter-spacing:-0.01em;line-height:1.25">You don't know which customers make money.</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Contribution margin by customer, channel and SKU, from the same ledger that books the orders. No spreadsheet to rebuild every month.</p>
-      </div>
-    </div>
-
-    <!-- Three notifications -->
-    <div style="display:flex;flex-direction:column;gap:20px">
-      <div class="ph-eyebrow lt">What it sounds like in your Slack</div>
+    <div class="stack-s">
+      <div class="ph-eyebrow">What it sounds like in your Slack</div>
       <div class="ph-notif-grid">
-        <div class="ph-card lt" style="padding:20px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="width:28px;height:28px;border-radius:7px;background:#09090B;display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 90.5 57" aria-hidden="true" style="height:12px;width:auto;display:block"><use href="#ph-icon"></use></svg></span>
-            <span style="font-size:14px;font-weight:600;color:#18181B">Pharus</span>
-            <span class="ph-mono" style="font-size:12px;color:#6B6B73">7:02 AM</span>
-          </div>
-          <p style="margin:0;font-size:15px;line-height:1.55;color:#27272A">Order #4471 is short 48 cases in NJ. Split it: 120 from NJ today, 48 from Reno tomorrow. Approve?</p>
-          <div class="ph-mono" style="font-size:12px;color:#16A34A">No action needed</div>
-        </div>
-        <div class="ph-card lt" style="padding:20px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="width:28px;height:28px;border-radius:7px;background:#09090B;display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 90.5 57" aria-hidden="true" style="height:12px;width:auto;display:block"><use href="#ph-icon"></use></svg></span>
-            <span style="font-size:14px;font-weight:600;color:#18181B">Pharus</span>
-            <span class="ph-mono" style="font-size:12px;color:#6B6B73">9:15 AM</span>
-          </div>
-          <p style="margin:0;font-size:15px;line-height:1.55;color:#27272A">Hot Honey pouches stock out before the next run. PO drafted: 2,000 units, due Nov 12. Approve?</p>
-          <div style="display:flex;gap:8px">
-            <span style="font-size:13px;font-weight:600;color:#09090B;background:#5A8CFE;border-radius:7px;padding:6px 12px">Approve</span>
-            <span style="font-size:13px;font-weight:600;color:#27272A;border:1px solid #D4D4D8;border-radius:7px;padding:6px 12px">Change</span>
-          </div>
-        </div>
-        <div class="ph-card lt" style="padding:20px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="width:28px;height:28px;border-radius:7px;background:#09090B;display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 90.5 57" aria-hidden="true" style="height:12px;width:auto;display:block"><use href="#ph-icon"></use></svg></span>
-            <span style="font-size:14px;font-weight:600;color:#18181B">Pharus</span>
-            <span class="ph-mono" style="font-size:12px;color:#6B6B73">11:40 AM</span>
-          </div>
-          <p style="margin:0;font-size:15px;line-height:1.55;color:#27272A">3PL counts 310 cases of Original; we show 340. The Oct 14 transfer was never received. Adjustment drafted.</p>
-          <div style="display:flex;gap:8px">
-            <span style="font-size:13px;font-weight:600;color:#09090B;background:#5A8CFE;border-radius:7px;padding:6px 12px">Post it</span>
-            <span class="ph-mono" style="font-size:12px;color:#6B6B73;align-self:center">one click</span>
-          </div>
-        </div>
+<div class="card notif"><div class="notif-h"><span class="avatar"><svg viewBox="0 0 90.5 57" aria-hidden="true"><use href="#ph-icon"></use></svg></span><span class="notif-n">Pharus</span><span class="ph-mono notif-t">7:02 AM</span></div><p>Order #4471 is short 48 cases in NJ. Split it: 120 from NJ today, 48 from Reno tomorrow. Approve?</p><div class="ph-mono ok">No action needed</div></div>
+<div class="card notif"><div class="notif-h"><span class="avatar"><svg viewBox="0 0 90.5 57" aria-hidden="true"><use href="#ph-icon"></use></svg></span><span class="notif-n">Pharus</span><span class="ph-mono notif-t">9:15 AM</span></div><p>Hot Honey pouches stock out before the next run. PO drafted: 2,000 units, due Nov 12. Approve?</p><div class="acts"><span class="chip chip-p">Approve</span><span class="chip">Change</span></div></div>
+<div class="card notif"><div class="notif-h"><span class="avatar"><svg viewBox="0 0 90.5 57" aria-hidden="true"><use href="#ph-icon"></use></svg></span><span class="notif-n">Pharus</span><span class="ph-mono notif-t">11:40 AM</span></div><p>3PL counts 310 cases of Original; we show 340. The Oct 14 transfer was never received. Adjustment drafted.</p><div class="acts"><span class="chip chip-p">Post it</span><span class="ph-mono hint">one click</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== A DAY WITH PHARUS ===================== -->
-<section id="day" class="ph-sec" style="scroll-margin-top:68px;background:#0E0E11;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)">
-  <div class="ph-wrap" style="display:flex;flex-direction:column;gap:40px">
-    <div style="display:flex;flex-direction:column;gap:14px;max-width:720px">
-      <div class="ph-eyebrow">Friday, 5:40 PM</div>
-      <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#FFFFFF">You did the work. Pharus kept up.</h2>
-      <p style="margin:0;font-size:18px;line-height:1.55;color:#A1A1AA">A week of phone calls and shipments, none of it logged. It's already here.</p>
+<section id="day" class="ph-sec alt">
+  <div class="ph-wrap stack-l">
+    <div class="sec-head"><div class="ph-eyebrow">Friday, 5:40 PM</div><h2 class="ph-h2">You did the work. Pharus kept up.</h2><p class="lead">A week of phone calls and shipments, none of it logged. It's already here.</p></div>
+    <div class="days">
+<div class="ph-day-row"><div class="ph-mono day-d">Mon</div><div><div class="day-t">Shipped a transfer to Amazon</div><div class="day-s">Drafted from the carrier confirmation in your inbox. 240 units, NJ to FBA.</div></div><div class="ph-day-status ph-mono ok">ready to approve</div></div>
+<div class="ph-day-row"><div class="ph-mono day-d">Tue</div><div><div class="day-t">Took three POs by phone</div><div class="day-s">Booked against the right warehouse from the emailed confirmations.</div></div><div class="ph-day-status ph-mono ok">$61,204 · ready to approve</div></div>
+<div class="ph-day-row"><div class="ph-mono day-d">Wed</div><div><div class="day-t">Caught two orders claiming the same stock</div><div class="day-s">96 cases committed twice. Both held, ship order set by delivery date.</div></div><div class="ph-day-status ph-mono warn">needs your call</div></div>
+<div class="ph-day-row"><div class="ph-mono day-d">Thu</div><div><div class="day-t">Co-pack run finished</div><div class="day-s">Receipt drafted from the packer's report. Materials consumed, finished goods in.</div></div><div class="ph-day-status ph-mono ok">ready to approve</div></div>
+<div class="ph-day-row"><div class="ph-mono day-d">Fri</div><div><div class="day-t">Pouches running low for next run</div><div class="day-s">PO drafted at the vendor's last price and minimum. Lead time covered.</div></div><div class="ph-day-status ph-mono ok">$18,940 · ready to approve</div></div>
+<div class="ph-day-row"><div class="ph-mono day-d">Fri</div><div><div class="day-t">Shortage claim on a remittance</div><div class="day-s">Signed BOL pulled, dispute written.</div></div><div class="ph-day-status ph-mono ok">$2,140 · ready to approve</div></div>
     </div>
-
-    <div style="display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,0.08)">
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Mon</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Shipped a transfer to Amazon</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">Drafted from the carrier confirmation in your inbox. 240 units, NJ to FBA.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#4ADE80">ready to approve</div>
-      </div>
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Tue</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Took three POs by phone</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">Booked against the right warehouse from the emailed confirmations.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#4ADE80">$61,204 · ready to approve</div>
-      </div>
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Wed</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Caught two orders claiming the same stock</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">96 cases committed twice. Both held, ship order set by delivery date.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#FBBF24">needs your call</div>
-      </div>
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Thu</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Co-pack run finished</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">Receipt drafted from the packer's report. Materials consumed, finished goods in.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#4ADE80">ready to approve</div>
-      </div>
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Fri</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Pouches running low for next run</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">PO drafted at the vendor's last price and minimum. Lead time covered.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#4ADE80">$18,940 · ready to approve</div>
-      </div>
-      <div class="ph-day-row">
-        <div class="ph-mono" style="font-size:13px;color:#8FB0FF;padding-top:3px">Fri</div>
-        <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600;color:#FFFFFF">Shortage claim on a remittance</div><div style="font-size:15px;color:#A1A1AA;line-height:1.5">Signed BOL pulled, dispute written.</div></div>
-        <div class="ph-day-status ph-mono" style="font-size:13px;color:#4ADE80">$2,140 · ready to approve</div>
-      </div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div style="font-size:22px;font-weight:600;color:#FFFFFF;letter-spacing:-0.01em">17 items this week. One needed a decision.</div>
-      <div style="font-size:22px;font-weight:600;color:#71717A;letter-spacing:-0.01em">Approve the rest and log off.</div>
-    </div>
+    <div class="tally"><div>17 items this week. One needed a decision.</div><div class="dim">Approve the rest and log off.</div></div>
   </div>
 </section>
 
 <!-- ===================== PRICING ===================== -->
-<span id="pricing" aria-hidden="true" style="display:block;scroll-margin-top:68px"></span>
-<section id="plans" class="ph-sec" style="scroll-margin-top:68px;background:#FAFAFA;color:#18181B">
-  <div class="ph-wrap" style="display:flex;flex-direction:column;gap:40px">
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px">
-      <div style="display:flex;flex-direction:column;gap:14px;max-width:640px">
-        <div class="ph-eyebrow lt">Plans</div>
-        <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#18181B">Built around how your business works.</h2>
-        <p style="margin:0;font-size:18px;line-height:1.55;color:#52525B">Pricing depends on what Pharus connects to, not on orders, users or revenue. You get a quote in your working session.</p>
-      </div>
-    </div>
-
+<span id="pricing" aria-hidden="true" class="anchor"></span>
+<section id="plans" class="ph-sec lt">
+  <div class="ph-wrap stack-l">
+    <div class="sec-head"><div class="ph-eyebrow">Plans</div><h2 class="ph-h2">Built around how your business works.</h2><p class="lead">Pricing depends on what Pharus connects to, not on orders, users or revenue. You get a quote in your working session.</p></div>
     <div class="ph-price-grid">
-      <!-- Standard -->
-      <div class="ph-card lt" style="padding:32px;display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="ph-mono" style="font-size:12px;color:#3E74F5;letter-spacing:0.06em">STANDARD</div>
-          <div style="font-size:15px;color:#52525B">You buy finished goods and sell them.</div>
-        </div>
-        <div style="font-size:16px;font-weight:600;color:#18181B;line-height:1.45">Runs purchasing, your storefronts and your 3PL.</div>
-        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#27272A">
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Purchase orders and products</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>E-commerce connectors</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>One external 3PL location</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Insights and reporting</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Hands-on onboarding with our founding team</li>
-        </ul>
-        <a class="ph-btn ph-btn-ghost lt" style="margin-top:auto" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
-      </div>
-
-      <!-- Pro -->
-      <div class="ph-card lt" style="padding:32px;display:flex;flex-direction:column;gap:22px;border-color:rgba(90,140,254,0.5);position:relative">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="display:flex;align-items:center;justify-content:space-between"><div class="ph-mono" style="font-size:12px;color:#3E74F5;letter-spacing:0.06em">PRO</div><span class="ph-mono" style="font-size:11px;color:#09090B;background:#5A8CFE;border-radius:6px;padding:4px 8px;font-weight:600">MOST BRANDS</span></div>
-          <div style="font-size:15px;color:#52525B">You make or convert product.</div>
-        </div>
-        <div style="font-size:16px;font-weight:600;color:#18181B;line-height:1.45">Runs production, materials and every location.</div>
-        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#27272A">
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Everything in Standard</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Materials and conversions</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Production and work orders</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Multiple locations and sources</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Hands-on onboarding with our founding team</li>
-        </ul>
-        <a class="ph-btn ph-btn-primary" style="margin-top:auto" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
-      </div>
-
-      <!-- Custom -->
-      <div class="ph-card lt" style="padding:32px;display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="ph-mono" style="font-size:12px;color:#3E74F5;letter-spacing:0.06em">CUSTOM</div>
-          <div style="font-size:15px;color:#52525B">Wholesale, EDI, custom connectors and workflows.</div>
-        </div>
-        <div style="font-size:16px;font-weight:600;color:#18181B;line-height:1.45">Runs wholesale, EDI, cash application and the close with you.</div>
-        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#27272A">
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Everything in Pro</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>EDI and custom connectors</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Custom workflows built for your trading partners</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Accounting write-back and remittance automation</li>
-          <li style="display:flex;gap:10px;line-height:1.45"><span style="color:#3E74F5">—</span>Migration and month-end close support</li>
-        </ul>
-        <a class="ph-btn ph-btn-ghost lt" style="margin-top:auto" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
-      </div>
+<div class="card plan" data-tier="standard">
+<div class="plan-h"><div class="plan-top"><div class="ph-mono plan-n">STANDARD</div></div><div class="plan-sub">You buy finished goods and sell them.</div></div>
+<div class="plan-lead">Runs purchasing, your storefronts and your 3PL.</div>
+<ul class="plan-list">
+<li><span class="dash">—</span>Purchase orders and products</li>
+<li><span class="dash">—</span>E-commerce connectors</li>
+<li><span class="dash">—</span>One external 3PL location</li>
+<li><span class="dash">—</span>Insights and reporting</li>
+<li><span class="dash">—</span>Hands-on onboarding with our founding team</li>
+</ul>
+<a class="ph-btn ph-btn-ghost" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
+</div>
+<div class="card plan feat" data-tier="pro">
+<div class="plan-h"><div class="plan-top"><div class="ph-mono plan-n">PRO</div><span class="ph-mono badge">MOST BRANDS</span></div><div class="plan-sub">You make or convert product.</div></div>
+<div class="plan-lead">Runs production, materials and every location.</div>
+<ul class="plan-list">
+<li><span class="dash">—</span>Everything in Standard</li>
+<li><span class="dash">—</span>Materials and conversions</li>
+<li><span class="dash">—</span>Production and work orders</li>
+<li><span class="dash">—</span>Multiple locations and sources</li>
+<li><span class="dash">—</span>Hands-on onboarding with our founding team</li>
+</ul>
+<a class="ph-btn ph-btn-primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
+</div>
+<div class="card plan" data-tier="custom">
+<div class="plan-h"><div class="plan-top"><div class="ph-mono plan-n">CUSTOM</div></div><div class="plan-sub">Wholesale, EDI, custom connectors and workflows.</div></div>
+<div class="plan-lead">Runs wholesale, EDI, cash application and the close with you.</div>
+<ul class="plan-list">
+<li><span class="dash">—</span>Everything in Pro</li>
+<li><span class="dash">—</span>EDI and custom connectors</li>
+<li><span class="dash">—</span>Custom workflows built for your trading partners</li>
+<li><span class="dash">—</span>Accounting write-back and remittance automation</li>
+<li><span class="dash">—</span>Migration and month-end close support</li>
+</ul>
+<a class="ph-btn ph-btn-ghost" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
+</div>
     </div>
-
-    <p style="margin:0;font-size:15px;color:#6B6B73;text-align:center">Every account starts with a 30-minute working session on your real data.</p>
+    <p class="note">Every account starts with a 30-minute working session on your real data.</p>
   </div>
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section id="faq" class="ph-sec" style="scroll-margin-top:68px;border-top:1px solid #E4E4E7;border-bottom:1px solid #E4E4E7;background:#FFFFFF;color:#18181B">
-  <div class="ph-wrap" style="display:flex;flex-direction:column;gap:48px">
-    <div style="display:flex;flex-direction:column;gap:14px;max-width:720px">
-      <div class="ph-eyebrow lt">Before you hand anything over</div>
-      <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#18181B">Fair questions.</h2>
-    </div>
+<section id="faq" class="ph-sec alt">
+  <div class="ph-wrap stack-l">
+    <div class="sec-head"><div class="ph-eyebrow">Before you hand anything over</div><h2 class="ph-h2">Fair questions.</h2></div>
     <div class="ph-faq-grid">
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">Is this another system I have to manage?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">No. It works with the tools you already use. You approve its work from email or Slack.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">Will it do anything without asking me?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">Does it need access to my email?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">How long does setup take?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Usually within your first week. We set it up with you from your real data and stay through the first live orders.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">Does it work with my 3PL?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-top:1px solid #E4E4E7">
-        <h3 style="margin:0;font-size:18px;font-weight:600;color:#18181B">What does it connect to?</h3>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#52525B">Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few.</p>
-      </div>
+<div class="faq-i"><h3>Is this another system I have to manage?</h3><p>No. It works with the tools you already use. You approve its work from email or Slack.</p></div>
+<div class="faq-i"><h3>Will it do anything without asking me?</h3><p>No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on.</p></div>
+<div class="faq-i"><h3>Does it need access to my email?</h3><p>Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you.</p></div>
+<div class="faq-i"><h3>How long does setup take?</h3><p>Usually within your first week. We set it up with you from your real data and stay through the first live orders.</p></div>
+<div class="faq-i"><h3>Does it work with my 3PL?</h3><p>Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session.</p></div>
+<div class="faq-i"><h3>What does it connect to?</h3><p>Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ===================== CLOSING CTA ===================== -->
-<section data-section="closing" class="ph-sec">
-  <div class="ph-wrap">
-    <div class="ph-card" style="padding:64px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;background:radial-gradient(circle at 50% 0px,rgba(105,70,189,0.38),transparent 55%),#0E0E11">
-      <h2 class="ph-h2" style="margin:0;font-size:44px;line-height:1.1;letter-spacing:-0.025em;font-weight:700;color:#FFFFFF;max-width:700px">Stop doing the back office yourself.</h2>
-      <p style="margin:0;font-size:18px;line-height:1.55;color:#A1A1AA;max-width:620px">Bring one customer PO and one vendor invoice to a 30-minute session and watch Pharus work them up for your approval.</p>
-      <a class="ph-btn ph-btn-primary" style="height:52px;padding:0 28px;font-size:16px" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
-    </div>
+<section data-section="closing" class="ph-sec cta-sec">
+  <div class="ph-wrap cta">
+    <h2 class="ph-h2">Stop doing the back office yourself.</h2>
+    <p class="lead">Bring one customer PO and one vendor invoice to a 30-minute session and watch Pharus work them up for your approval.</p>
+    <a class="ph-btn ph-btn-primary ph-btn-lg" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
   </div>
 </section>
 
 <!-- ===================== REFERRAL ===================== -->
-<section data-section="referral" style="padding:0 0 96px">
+<section data-section="referral" class="referral">
   <div class="ph-wrap">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:32px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)">
-      <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 420px;min-width:0">
-        <div style="font-size:18px;font-weight:600;color:#FFFFFF">Know a founder still running ops out of spreadsheets?</div>
-        <div style="font-size:15px;line-height:1.55;color:#A1A1AA">Send one intro email. $100 off your next invoice when it lands, and a month free when they sign. Credits, not cash; no limit.</div>
+    <div class="ref-in">
+      <div class="ref-t">
+        <div class="ref-h">Know a founder still running ops out of spreadsheets?</div>
+        <div class="ref-p">Send one intro email. $100 off your next invoice when it lands, and a month free when they sign. Credits, not cash; no limit.</div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <div class="btn-row">
         <a class="ph-btn ph-btn-primary" href="https://app.pharus.ai">Refer from your account</a>
         <a class="ph-btn ph-btn-ghost" href="mailto:marshall@pharus.ai?subject=Intro%3A%20%5Btheir%20name%5D%20%3C%3E%20Marshall%20%28Pharus%29&body=Hi%20%5Btheir%20name%5D%2C%0A%0ALooping%20in%20Marshall%20from%20Pharus.%20We%20run%20our%20back%20office%20on%20it%3A%20it%20drafts%20our%20POs%2C%20keeps%20inventory%20tied%20out%20and%20matches%20payments%2C%20and%20I%20only%20step%20in%20to%20approve.%0A%0AThought%20it%20was%20worth%20a%2020-minute%20look%20for%20%5Btheir%20brand%5D.%0A%0AMarshall%2C%20%5Btheir%20name%5D%20runs%20%5Btheir%20brand%5D.%20Over%20to%20you%20two.%0A%0A%5Byour%20name%5D">Send the intro email</a>
       </div>
@@ -859,23 +866,19 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </main>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="ph-footer" style="padding:40px 0 48px;border-top:1px solid rgba(255,255,255,0.08)">
-  <div class="ph-wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 48px">
-    <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 320px">
-      <div style="display:flex;align-items:center;gap:9px;color:#FFFFFF">
-        <svg viewBox="0 0 90.5 57" role="img" aria-label="Pharus" style="height:22px;width:auto;display:block"><use href="#ph-icon"></use></svg>
-        <svg viewBox="0 0 124.6 27.8" aria-hidden="true" style="height:12px;width:auto;display:block;filter:brightness(0) invert(1)"><use href="#ph-word"></use></svg>
+<footer class="ph-footer">
+  <div class="ph-wrap foot-in">
+    <div class="foot-b">
+      <div class="brand">
+        <svg viewBox="0 0 90.5 57" role="img" aria-label="Pharus" class="brand-i"><use href="#ph-icon"></use></svg>
+        <svg viewBox="0 0 124.6 27.8" aria-hidden="true" class="brand-w"><use href="#ph-word"></use></svg>
       </div>
-      <div style="font-size:14px;color:#71717A;max-width:360px;line-height:1.5">Inventory management for consumer goods brands.</div>
+      <div class="foot-d">Inventory management for consumer goods brands.</div>
     </div>
-    <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center">
+    <nav aria-label="Footer" class="foot-n">
       <a href="#why">Why</a><a href="#day">Week in the Life</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:marshall@pharus.ai">Contact</a><a href="https://app.pharus.ai">Log in</a>
     </nav>
-    <div class="ph-mono" style="flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:12px;color:#71717A;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)">
-      <span>© 2026 Pharus Insights Inc.</span><span>pharus.ai</span>
-    </div>
+    <div class="ph-mono legal"><span>© 2026 Pharus Insights Inc.</span><span>pharus.ai</span></div>
   </div>
 </footer>
-
-</div>
 </body></html>
