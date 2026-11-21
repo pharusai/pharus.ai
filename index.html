@@ -493,7 +493,7 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 .marquee.soon .marquee-t{animation-direction:reverse;animation-duration:55s}
 .marquee:not(.soon){padding-bottom:var(--s4)}
 @keyframes marquee{to{transform:translateX(-100%)}}
-@media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none;justify-content:center}.marquee-t{animation:none;flex-wrap:wrap;justify-content:center;gap:var(--s4) var(--s6);padding:0}.marquee-t[aria-hidden]{display:none}}
+@media (prefers-reduced-motion:reduce){.marquee-t{animation-duration:140s}.marquee.soon .marquee-t{animation-duration:160s}}
 
 /* ---- Why ---- */
 .ph-why-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s5)}
