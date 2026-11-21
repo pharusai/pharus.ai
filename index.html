@@ -618,6 +618,16 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 .lt .chip{color:#27272A}
 .lt .ok{color:#15803D}
 .lt .num,.lt .plan-n,.lt .dash{color:#2F63E0}
+
+/* FAQ: plain list on desktop, foldable on phones */
+.faq-i h3 button{all:unset;display:block;width:100%;cursor:default;font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit}
+.faq-fold .faq-i h3 button{cursor:pointer;position:relative;padding-right:32px;box-sizing:border-box}
+.faq-fold .faq-i h3 button:focus-visible{outline:2px solid var(--accent-t);outline-offset:4px;border-radius:4px}
+.faq-fold .faq-i h3 button::after{content:"";position:absolute;right:6px;top:.45em;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+.faq-fold .faq-i.open h3 button::after{transform:rotate(-135deg);top:.6em}
+.faq-fold .faq-i:not(.open) p{display:none}
+.faq-fold .faq-i{gap:0;padding:var(--s4) 0}
+.faq-fold .faq-i.open p{margin-top:var(--s3)}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharus.ai/#organization", "name": "Pharus", "legalName": "Pharus Insights Inc.", "url": "https://pharus.ai/", "logo": "https://pharus.ai/apple-touch-icon.png", "description": "Pharus makes inventory management software for consumer goods brands.", "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "marshall@pharus.ai"}}, {"@type": "WebSite", "@id": "https://pharus.ai/#website", "url": "https://pharus.ai/", "name": "Pharus", "publisher": {"@id": "https://pharus.ai/#organization"}, "inLanguage": "en-US"}, {"@type": "SoftwareApplication", "@id": "https://pharus.ai/#software", "name": "Pharus", "url": "https://pharus.ai/", "applicationCategory": "BusinessApplication", "applicationSubCategory": "Inventory management software", "operatingSystem": "Web", "description": "Pharus is inventory management software for consumer goods brands. It tracks orders, stock and payments, and brings each action to you to approve.", "audience": {"@type": "BusinessAudience", "audienceType": "Consumer goods (CPG) brands"}, "featureList": ["Inventory tracking across sales channels, warehouses and 3PLs", "Sales orders, purchase orders, production and work orders", "Payment and remittance matching", "Stockout and reorder recommendations", "Contribution margin by customer, channel and SKU", "Every action drafted for the operator to approve"], "publisher": {"@id": "https://pharus.ai/#organization"}}, {"@type": "FAQPage", "@id": "https://pharus.ai/#faq", "mainEntity": [{"@type": "Question", "name": "Is this another system I have to manage?", "acceptedAnswer": {"@type": "Answer", "text": "No. It works with the tools you already use. You approve its work from email or Slack."}}, {"@type": "Question", "name": "Will it do anything without asking me?", "acceptedAnswer": {"@type": "Answer", "text": "No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on."}}, {"@type": "Question", "name": "Does it need access to my email?", "acceptedAnswer": {"@type": "Answer", "text": "Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you."}}, {"@type": "Question", "name": "How long does setup take?", "acceptedAnswer": {"@type": "Answer", "text": "Usually within your first week. We set it up with you from your real data and stay through the first live orders."}}, {"@type": "Question", "name": "Does it work with my 3PL?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session."}}, {"@type": "Question", "name": "What does it connect to?", "acceptedAnswer": {"@type": "Answer", "text": "Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few."}}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTJL50VB1N"></script>
@@ -839,12 +849,12 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
   <div class="ph-wrap stack-l">
     <div class="sec-head"><div class="ph-eyebrow">Before you hand anything over</div><h2 class="ph-h2">Fair questions.</h2></div>
     <div class="ph-faq-grid">
-<div class="faq-i"><h3>Is this another system I have to manage?</h3><p>No. It works with the tools you already use. You approve its work from email or Slack.</p></div>
-<div class="faq-i"><h3>Will it do anything without asking me?</h3><p>No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on.</p></div>
-<div class="faq-i"><h3>Does it need access to my email?</h3><p>Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you.</p></div>
-<div class="faq-i"><h3>How long does setup take?</h3><p>Usually within your first week. We set it up with you from your real data and stay through the first live orders.</p></div>
-<div class="faq-i"><h3>Does it work with my 3PL?</h3><p>Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session.</p></div>
-<div class="faq-i"><h3>What does it connect to?</h3><p>Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few.</p></div>
+<div class="faq-i"><h3><button type="button">Is this another system I have to manage?</button></h3><p>No. It works with the tools you already use. You approve its work from email or Slack.</p></div>
+<div class="faq-i"><h3><button type="button">Will it do anything without asking me?</button></h3><p>No. Pharus drafts; you approve. Every order, PO, payment match and journal entry waits for your tap, with the source document attached. If you later want routine items to post on their own, that's a setting you turn on.</p></div>
+<div class="faq-i"><h3><button type="button">Does it need access to my email?</button></h3><p>Only the folders and senders you choose. It reads POs, invoices and remittances. It never sends email as you.</p></div>
+<div class="faq-i"><h3><button type="button">How long does setup take?</button></h3><p>Usually within your first week. We set it up with you from your real data and stay through the first live orders.</p></div>
+<div class="faq-i"><h3><button type="button">Does it work with my 3PL?</button></h3><p>Yes. ShipVine, ShipHero, Logiwa, ShipBob and RJW Edge are a few we work with. Use someone else? Bring it to your working session.</p></div>
+<div class="faq-i"><h3><button type="button">What does it connect to?</button></h3><p>Shopify, Amazon, TikTok Shop, Meta and Google Ads, your 3PLs, EDI, your inbox and your accounting system, to name a few.</p></div>
     </div>
   </div>
 </section>
@@ -877,4 +887,8 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
   </div>
 </footer>
 <script>document.querySelectorAll(".mnav a").forEach(function(a){a.addEventListener("click",function(){a.closest("details").removeAttribute("open")})})</script>
+<script>(function(){var g=document.querySelector(".ph-faq-grid");if(!g)return;var m=matchMedia("(max-width:900px)");
+function set(){g.classList.toggle("faq-fold",m.matches);g.querySelectorAll(".faq-i").forEach(function(i){var b=i.querySelector("button");if(m.matches){b.setAttribute("aria-expanded",i.classList.contains("open"))}else{b.removeAttribute("aria-expanded");i.classList.remove("open")}})}
+g.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(!b||!m.matches)return;var i=b.closest(".faq-i");var o=i.classList.toggle("open");b.setAttribute("aria-expanded",o)});
+m.addEventListener("change",set);set()})()</script>
 </body></html>
