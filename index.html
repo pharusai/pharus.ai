@@ -409,8 +409,8 @@ a{color:var(--accent-t);text-decoration:none}a:hover{color:#B7CBFF}
 svg.ico{width:14px;height:14px;flex:none}
 .ph-mono{font-family:'JetBrains Mono',ui-monospace,monospace}
 .ph-wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--s6)}
-.ph-sec{padding:var(--s9) 0;position:relative;isolation:isolate}
-.ph-sec.alt{background:var(--surface);border-block:1px solid var(--line)}
+.ph-sec{--sheet:28px;position:relative;isolation:isolate;background:var(--bg);border-top:1px solid var(--line);border-radius:var(--sheet) var(--sheet) 0 0;margin-top:calc(var(--sheet) * -1);padding:calc(var(--s9) + var(--sheet)) 0 calc(var(--s9) + var(--sheet))}
+.ph-sec.alt{background:var(--surface)}
 .anchor{display:block}
 .stack-l{display:flex;flex-direction:column;gap:var(--s7)}
 .stack-s{display:flex;flex-direction:column;gap:var(--s5)}
@@ -458,7 +458,8 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 
 
 /* ---- Hero ---- */
-.hero{padding:var(--s9) 0;position:relative;overflow:hidden;background:radial-gradient(50% 60% at 85% 0%,rgba(52,82,150,.55),transparent 70%),radial-gradient(45% 55% at 0% 100%,rgba(90,40,100,.45),transparent 70%),var(--bg)}
+.top{position:relative;overflow:hidden;isolation:isolate;padding-bottom:calc(var(--sheet-top,28px) + 8px);background:radial-gradient(50% 60% at 85% 0%,rgba(52,82,150,.55),transparent 70%),radial-gradient(45% 55% at 0% 100%,rgba(90,40,100,.45),transparent 70%),var(--bg)}
+.hero{padding:var(--s9) 0 var(--s7);position:relative}
 .ph-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:var(--s8);align-items:center}
 .hero-copy{display:flex;flex-direction:column;gap:var(--s5);align-items:flex-start}
 .hero-lead{font-size:18px;line-height:1.6;color:var(--muted);max-width:540px}
@@ -490,7 +491,7 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 .tag{font-size:11px;letter-spacing:.06em;color:#09090B;background:var(--accent);border-radius:6px;padding:5px 9px;font-weight:600;flex:none}
 
 /* ---- Integrations strip ---- */
-.strip{border-block:1px solid var(--line);overflow:hidden}
+.strip{overflow:hidden}
 .strip-in{display:flex;flex-direction:column;align-items:center;gap:var(--s4);padding-block:var(--s6) var(--s4)}
 .marquee{display:flex;overflow:hidden;padding-bottom:var(--s6);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .marquee-t{display:flex;flex:none;align-items:center;gap:var(--s7);padding-right:var(--s7);min-width:100%;justify-content:space-around;animation:marquee 40s linear infinite}
@@ -556,14 +557,10 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 .faq-i p{font-size:15px;line-height:1.6;color:var(--muted)}
 
 /* ---- Closing CTA + referral ---- */
-.cta-sec{padding:var(--s9) 0 var(--s8);background:radial-gradient(50% 80% at 85% 0%,rgba(52,82,150,.45),transparent 70%),radial-gradient(45% 70% at 0% 100%,rgba(90,40,100,.4),transparent 70%),var(--bg)}
+#faq{padding-bottom:var(--s8)}
+.cta-sec{margin-top:0;border-top:0;border-radius:0;padding:var(--s5) 0 var(--s9);background:radial-gradient(50% 70% at 82% 45%,rgba(52,82,150,.40),transparent 72%),radial-gradient(45% 60% at 5% 70%,rgba(90,40,100,.38),transparent 72%),var(--bg)}
 .cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s5)}
 .cta .ph-h2{max-width:700px}.cta .lead{max-width:620px}
-.referral{padding:0 0 var(--s9)}
-.ref-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s5) var(--s7);padding:var(--s6) 0;border-block:1px solid var(--line)}
-.ref-t{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:6px}
-.ref-h{font-size:18px;font-weight:600;color:var(--strong)}
-.ref-p{font-size:15px;line-height:1.55;color:var(--muted)}
 
 /* ---- Footer ---- */
 .ph-footer{padding:var(--s7) 0;border-top:1px solid var(--line)}
@@ -587,7 +584,7 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
   .ph-day-row{grid-template-columns:72px minmax(0,1fr)}
   .ph-day-status{grid-column:2;text-align:left;padding-top:0}
   .ph-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ph-sec{padding:72px 0}.hero{padding:64px 0}
+  .ph-sec{padding:calc(72px + var(--sheet)) 0}.cta-sec{padding:0 0 72px}.hero{padding:64px 0 var(--s6)}
   .ph-nav{display:none}
   .mnav{display:block}
   .hdr-r .login{display:none}
@@ -603,12 +600,11 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
 
 /* ---- Texture: fine dot grid, faded at the edges (same as the release slides) ---- */
-.ph-sec::before,.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+.ph-sec::before,.top::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background-image:radial-gradient(var(--dot) 1.1px,transparent 1.4px);background-size:24px 24px;
   -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 40%,#000 25%,transparent 100%);mask-image:radial-gradient(ellipse 85% 75% at 50% 40%,#000 25%,transparent 100%)}
-.hero{isolation:isolate}
-.hero::before{-webkit-mask-image:radial-gradient(ellipse 75% 85% at 20% 70%,#000 5%,transparent 100%);mask-image:radial-gradient(ellipse 75% 85% at 20% 70%,#000 5%,transparent 100%)}
-.hero .ph-wrap,.ph-sec .ph-wrap{position:relative}
+.top::before{-webkit-mask-image:radial-gradient(ellipse 75% 85% at 20% 70%,#000 5%,transparent 100%);mask-image:radial-gradient(ellipse 75% 85% at 20% 70%,#000 5%,transparent 100%)}
+.hero .ph-wrap,.ph-sec .ph-wrap,.strip{position:relative}
 
 /* ---- Light sections: same tokens, inverted ---- */
 .lt{--bg:#F4F4F5;--surface:#FFFFFF;--card:#FFFFFF;--raised:#F4F4F5;--text:#27272A;--strong:#09090B;--muted:#52525B;--dim:#6B6B73;
@@ -708,7 +704,8 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </header>
 <main id="main">
 
-<!-- ===================== HERO ===================== -->
+<!-- ===================== HERO + CONNECTORS ===================== -->
+<div class="top">
 <section data-section="hero" class="hero">
   <div class="ph-wrap">
     <div class="ph-hero-grid">
@@ -751,6 +748,7 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
   <div class="marquee"><ul class="marquee-t"><li><img src="/logos/shopify.svg" alt="" width="22" height="22" loading="lazy"><span>Shopify</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Seller Central</span></li><li><img src="/logos/shiphero.png" alt="" width="22" height="22" loading="lazy"><span>ShipHero</span></li><li><img src="/logos/meta.png" alt="" width="22" height="22" loading="lazy"><span>Meta Ads</span></li><li><img src="/logos/google-ads.svg" alt="" width="22" height="22" loading="lazy"><span>Google Ads</span></li><li><img src="/logos/tiktok-ads.png" alt="" width="22" height="22" loading="lazy"><span>TikTok Ads</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Ads</span></li><li><img class="full" src="/logos/microsoft-ads.png" alt="" width="22" height="22" loading="lazy"><span>Microsoft Ads</span></li><li><img src="/logos/klaviyo.png" alt="" width="22" height="22" loading="lazy"><span>Klaviyo</span></li><li><img src="/logos/google-analytics.svg" alt="" width="22" height="22" loading="lazy"><span>Google Analytics</span></li><li><img src="/logos/tiktok-shop.svg" alt="" width="22" height="22" loading="lazy"><span>TikTok Shop</span></li></ul><ul class="marquee-t" aria-hidden="true"><li><img src="/logos/shopify.svg" alt="" width="22" height="22" loading="lazy"><span>Shopify</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Seller Central</span></li><li><img src="/logos/shiphero.png" alt="" width="22" height="22" loading="lazy"><span>ShipHero</span></li><li><img src="/logos/meta.png" alt="" width="22" height="22" loading="lazy"><span>Meta Ads</span></li><li><img src="/logos/google-ads.svg" alt="" width="22" height="22" loading="lazy"><span>Google Ads</span></li><li><img src="/logos/tiktok-ads.png" alt="" width="22" height="22" loading="lazy"><span>TikTok Ads</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Ads</span></li><li><img class="full" src="/logos/microsoft-ads.png" alt="" width="22" height="22" loading="lazy"><span>Microsoft Ads</span></li><li><img src="/logos/klaviyo.png" alt="" width="22" height="22" loading="lazy"><span>Klaviyo</span></li><li><img src="/logos/google-analytics.svg" alt="" width="22" height="22" loading="lazy"><span>Google Analytics</span></li><li><img src="/logos/tiktok-shop.svg" alt="" width="22" height="22" loading="lazy"><span>TikTok Shop</span></li></ul></div>
   <div class="marquee soon"><ul class="marquee-t"><li><img class="full" src="/logos/faire.png" alt="" width="22" height="22" loading="lazy"><span>Faire</span></li><li><img src="/logos/sps-commerce.png" alt="" width="22" height="22" loading="lazy"><span>SPS Commerce</span></li><li><img src="/logos/airgoods.svg" alt="" width="22" height="22" loading="lazy"><span>AirGoods</span></li><li><img src="/logos/reprally.png" alt="" width="22" height="22" loading="lazy"><span>RepRally</span></li><li><img src="/logos/logiwa.png" alt="" width="22" height="22" loading="lazy"><span>Logiwa</span></li><li><img src="/logos/shipvine.png" alt="" width="22" height="22" loading="lazy"><span>Shipvine</span></li><li><img src="/logos/stellarpack.png" alt="" width="22" height="22" loading="lazy"><span>StellarPack</span></li><li><img src="/logos/rjw-edge.png" alt="" width="22" height="22" loading="lazy"><span>RJW Edge</span></li><li><img class="full" src="/logos/quickbooks.png" alt="" width="22" height="22" loading="lazy"><span>QuickBooks Online</span></li><li><img src="/logos/campfire.png" alt="" width="22" height="22" loading="lazy"><span>Campfire</span></li><li><img src="/logos/acumatica.svg" alt="" width="22" height="22" loading="lazy"><span>Acumatica</span></li></ul><ul class="marquee-t" aria-hidden="true"><li><img class="full" src="/logos/faire.png" alt="" width="22" height="22" loading="lazy"><span>Faire</span></li><li><img src="/logos/sps-commerce.png" alt="" width="22" height="22" loading="lazy"><span>SPS Commerce</span></li><li><img src="/logos/airgoods.svg" alt="" width="22" height="22" loading="lazy"><span>AirGoods</span></li><li><img src="/logos/reprally.png" alt="" width="22" height="22" loading="lazy"><span>RepRally</span></li><li><img src="/logos/logiwa.png" alt="" width="22" height="22" loading="lazy"><span>Logiwa</span></li><li><img src="/logos/shipvine.png" alt="" width="22" height="22" loading="lazy"><span>Shipvine</span></li><li><img src="/logos/stellarpack.png" alt="" width="22" height="22" loading="lazy"><span>StellarPack</span></li><li><img src="/logos/rjw-edge.png" alt="" width="22" height="22" loading="lazy"><span>RJW Edge</span></li><li><img class="full" src="/logos/quickbooks.png" alt="" width="22" height="22" loading="lazy"><span>QuickBooks Online</span></li><li><img src="/logos/campfire.png" alt="" width="22" height="22" loading="lazy"><span>Campfire</span></li><li><img src="/logos/acumatica.svg" alt="" width="22" height="22" loading="lazy"><span>Acumatica</span></li></ul></div>
 </section>
+</div>
 
 <!-- ===================== WHY ===================== -->
 <section id="why" class="ph-sec lt">
@@ -838,7 +836,7 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section id="faq" class="ph-sec alt">
+<section id="faq" class="ph-sec">
   <div class="ph-wrap stack-l">
     <div class="sec-head"><div class="ph-eyebrow">Before you hand anything over</div><h2 class="ph-h2">Fair questions.</h2></div>
     <div class="ph-faq-grid">
@@ -858,22 +856,6 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
     <h2 class="ph-h2">Stop doing the back office yourself.</h2>
     <p class="lead">Bring one customer PO and one vendor invoice to a 30-minute session and watch Pharus work them up for your approval.</p>
     <a class="ph-btn ph-btn-primary ph-btn-lg" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
-  </div>
-</section>
-
-<!-- ===================== REFERRAL ===================== -->
-<section data-section="referral" class="referral">
-  <div class="ph-wrap">
-    <div class="ref-in">
-      <div class="ref-t">
-        <div class="ref-h">Know a founder still running ops out of spreadsheets?</div>
-        <div class="ref-p">Send one intro email. $100 off your next invoice when it lands, and a month free when they sign. Credits, not cash; no limit.</div>
-      </div>
-      <div class="btn-row">
-        <a class="ph-btn ph-btn-primary" href="https://app.pharus.ai">Refer from your account</a>
-        <a class="ph-btn ph-btn-ghost" href="mailto:marshall@pharus.ai?subject=Intro%3A%20%5Btheir%20name%5D%20%3C%3E%20Marshall%20%28Pharus%29&body=Hi%20%5Btheir%20name%5D%2C%0A%0ALooping%20in%20Marshall%20from%20Pharus.%20We%20run%20our%20back%20office%20on%20it%3A%20it%20drafts%20our%20POs%2C%20keeps%20inventory%20tied%20out%20and%20matches%20payments%2C%20and%20I%20only%20step%20in%20to%20approve.%0A%0AThought%20it%20was%20worth%20a%2020-minute%20look%20for%20%5Btheir%20brand%5D.%0A%0AMarshall%2C%20%5Btheir%20name%5D%20runs%20%5Btheir%20brand%5D.%20Over%20to%20you%20two.%0A%0A%5Byour%20name%5D">Send the intro email</a>
-      </div>
-    </div>
   </div>
 </section>
 
