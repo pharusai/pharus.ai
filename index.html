@@ -446,6 +446,14 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
 .ph-nav{display:flex;gap:var(--s6)}
 .ph-nav a,.login{color:var(--muted);font-size:14px;font-weight:500}.ph-nav a:hover,.login:hover{color:var(--strong)}
 .hdr-r{display:flex;align-items:center;gap:var(--s5)}
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line-2);border-radius:var(--r-sm);color:var(--strong)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.mnav nav{position:absolute;right:0;top:48px;min-width:220px;background:var(--raised);border:1px solid var(--line-2);border-radius:var(--r-md);padding:var(--s2);display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.mnav nav a{padding:12px var(--s3);border-radius:var(--r-sm);color:var(--text);font-size:15px;font-weight:500}
+.mnav nav a:hover{background:rgba(255,255,255,.06);color:var(--strong)}
+
 
 /* ---- Hero ---- */
 .hero{padding:var(--s9) 0;position:relative;overflow:hidden;background:radial-gradient(60% 50% at 80% 0%,rgba(90,140,254,.10),transparent 70%)}
@@ -579,6 +587,8 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
   .ph-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-sec{padding:72px 0}.hero{padding:64px 0}
   .ph-nav{display:none}
+  .mnav{display:block}
+  .hdr-r .login{display:none}
   .cta{padding:var(--s7) var(--s5)}
   .stack-l{gap:var(--s6)}
 }
@@ -586,7 +596,6 @@ h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600;color:va
   .ph-wrap{padding-inline:var(--s4)}
   .marquee-t{gap:var(--s6);padding-right:var(--s6)}
   .marquee li{font-size:14px;gap:10px}
-  .ph-hdr-cta{display:none}
   .why-card,.plan{padding:var(--s5)}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
@@ -683,12 +692,16 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
       <svg viewBox="0 0 124.6 27.8" aria-hidden="true" class="brand-w"><use href="#ph-word"></use></svg>
     </a>
     <nav class="ph-nav" aria-label="Primary">
-      <a href="#why">Why</a>
-      <a href="#day">Week in the Life</a>
+      <a href="#why">Why Pharus</a>
+      <a href="#day">How it works</a>
       <a href="#plans">Plans</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="hdr-r">
+      <details class="mnav">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav aria-label="Menu"><a href="#why">Why Pharus</a><a href="#day">How it works</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a href="https://app.pharus.ai">Log in</a></nav>
+      </details>
       <a class="login" href="https://app.pharus.ai">Log in</a>
       <a class="ph-btn ph-btn-primary ph-btn-sm ph-hdr-cta" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1qYLwmexrH2hIRVK8Ps4BQxe9T19xiN1eYPXEBkWPQT_efTioUjFx-eiqo6637HYL6Pn1lPMtU">Book a demo</a>
     </div>
@@ -734,7 +747,7 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
 </section>
 
 <!-- ===================== INTEGRATIONS STRIP ===================== -->
-<section class="strip" aria-label="Integrations">
+<section id="connectors" class="strip" aria-label="Integrations">
   <div class="ph-wrap strip-in"><div class="ph-eyebrow dim">Works where your business already runs</div></div>
   <div class="marquee"><ul class="marquee-t"><li><img src="/logos/shopify.svg" alt="" width="22" height="22" loading="lazy"><span>Shopify</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Seller Central</span></li><li><img src="/logos/shiphero.png" alt="" width="22" height="22" loading="lazy"><span>ShipHero</span></li><li><img src="/logos/meta.png" alt="" width="22" height="22" loading="lazy"><span>Meta Ads</span></li><li><img src="/logos/google-ads.svg" alt="" width="22" height="22" loading="lazy"><span>Google Ads</span></li><li><img src="/logos/tiktok-ads.png" alt="" width="22" height="22" loading="lazy"><span>TikTok Ads</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Ads</span></li><li><img class="full" src="/logos/microsoft-ads.png" alt="" width="22" height="22" loading="lazy"><span>Microsoft Ads</span></li><li><img src="/logos/klaviyo.png" alt="" width="22" height="22" loading="lazy"><span>Klaviyo</span></li><li><img src="/logos/google-analytics.svg" alt="" width="22" height="22" loading="lazy"><span>Google Analytics</span></li><li><img src="/logos/tiktok-shop.svg" alt="" width="22" height="22" loading="lazy"><span>TikTok Shop</span></li></ul><ul class="marquee-t" aria-hidden="true"><li><img src="/logos/shopify.svg" alt="" width="22" height="22" loading="lazy"><span>Shopify</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Seller Central</span></li><li><img src="/logos/shiphero.png" alt="" width="22" height="22" loading="lazy"><span>ShipHero</span></li><li><img src="/logos/meta.png" alt="" width="22" height="22" loading="lazy"><span>Meta Ads</span></li><li><img src="/logos/google-ads.svg" alt="" width="22" height="22" loading="lazy"><span>Google Ads</span></li><li><img src="/logos/tiktok-ads.png" alt="" width="22" height="22" loading="lazy"><span>TikTok Ads</span></li><li><img src="/logos/amazon.png" alt="" width="22" height="22" loading="lazy"><span>Amazon Ads</span></li><li><img class="full" src="/logos/microsoft-ads.png" alt="" width="22" height="22" loading="lazy"><span>Microsoft Ads</span></li><li><img src="/logos/klaviyo.png" alt="" width="22" height="22" loading="lazy"><span>Klaviyo</span></li><li><img src="/logos/google-analytics.svg" alt="" width="22" height="22" loading="lazy"><span>Google Analytics</span></li><li><img src="/logos/tiktok-shop.svg" alt="" width="22" height="22" loading="lazy"><span>TikTok Shop</span></li></ul></div>
   <div class="marquee soon"><ul class="marquee-t"><li><img class="full" src="/logos/faire.png" alt="" width="22" height="22" loading="lazy"><span>Faire</span></li><li><img src="/logos/sps-commerce.png" alt="" width="22" height="22" loading="lazy"><span>SPS Commerce</span></li><li><img src="/logos/airgoods.svg" alt="" width="22" height="22" loading="lazy"><span>AirGoods</span></li><li><img src="/logos/reprally.png" alt="" width="22" height="22" loading="lazy"><span>RepRally</span></li><li><img src="/logos/logiwa.png" alt="" width="22" height="22" loading="lazy"><span>Logiwa</span></li><li><img src="/logos/shipvine.png" alt="" width="22" height="22" loading="lazy"><span>Shipvine</span></li><li><img src="/logos/stellarpack.png" alt="" width="22" height="22" loading="lazy"><span>StellarPack</span></li><li><img src="/logos/rjw-edge.png" alt="" width="22" height="22" loading="lazy"><span>RJW Edge</span></li><li><img class="full" src="/logos/quickbooks.png" alt="" width="22" height="22" loading="lazy"><span>QuickBooks Online</span></li><li><img src="/logos/campfire.png" alt="" width="22" height="22" loading="lazy"><span>Campfire</span></li><li><img src="/logos/acumatica.svg" alt="" width="22" height="22" loading="lazy"><span>Acumatica</span></li></ul><ul class="marquee-t" aria-hidden="true"><li><img class="full" src="/logos/faire.png" alt="" width="22" height="22" loading="lazy"><span>Faire</span></li><li><img src="/logos/sps-commerce.png" alt="" width="22" height="22" loading="lazy"><span>SPS Commerce</span></li><li><img src="/logos/airgoods.svg" alt="" width="22" height="22" loading="lazy"><span>AirGoods</span></li><li><img src="/logos/reprally.png" alt="" width="22" height="22" loading="lazy"><span>RepRally</span></li><li><img src="/logos/logiwa.png" alt="" width="22" height="22" loading="lazy"><span>Logiwa</span></li><li><img src="/logos/shipvine.png" alt="" width="22" height="22" loading="lazy"><span>Shipvine</span></li><li><img src="/logos/stellarpack.png" alt="" width="22" height="22" loading="lazy"><span>StellarPack</span></li><li><img src="/logos/rjw-edge.png" alt="" width="22" height="22" loading="lazy"><span>RJW Edge</span></li><li><img class="full" src="/logos/quickbooks.png" alt="" width="22" height="22" loading="lazy"><span>QuickBooks Online</span></li><li><img src="/logos/campfire.png" alt="" width="22" height="22" loading="lazy"><span>Campfire</span></li><li><img src="/logos/acumatica.svg" alt="" width="22" height="22" loading="lazy"><span>Acumatica</span></li></ul></div>
@@ -878,9 +891,10 @@ gtag('consent','update',{analytics_storage:v});b.remove();});document.body.appen
       <div class="foot-d">Inventory management for consumer goods brands.</div>
     </div>
     <nav aria-label="Footer" class="foot-n">
-      <a href="#why">Why</a><a href="#day">Week in the Life</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:marshall@pharus.ai">Contact</a><a href="https://app.pharus.ai">Log in</a>
+      <a href="#why">Why Pharus</a><a href="#day">How it works</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:marshall@pharus.ai">Contact</a><a href="https://app.pharus.ai">Log in</a>
     </nav>
     <div class="ph-mono legal"><span>© 2026 Pharus Insights Inc.</span><span>pharus.ai</span></div>
   </div>
 </footer>
+<script>document.querySelectorAll(".mnav a").forEach(function(a){a.addEventListener("click",function(){a.closest("details").removeAttribute("open")})})</script>
 </body></html>
